@@ -152,13 +152,50 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Filmstreifen ---------- */
 .strip { display: flex; gap: 6px; height: clamp(150px, 20vw, 260px); background: var(--white); overflow: hidden; padding: 0; }
-.strip > span { flex: 1 1 0; overflow: hidden; transform: skewX(-12deg); background: var(--ink); }
+.strip > span { flex: 1 1 0; min-width: 0; overflow: hidden; transform: skewX(-12deg); background: var(--ink); }
 .strip > span:first-child { margin-left: -60px; }
 .strip > span:last-child { margin-right: -60px; }
 .strip img { width: 130%; max-width: none; height: 100%; margin-left: -15%; object-fit: cover; object-position: 50% 30%; transform: skewX(12deg); filter: saturate(.85) contrast(1.05); }
 
 
 /* ---------- Kursinhalte ---------- */
+/* Ablauf-Leiste: fünf Pfeilsegmente, von hell (Verletzung) zu dunkel (Performance) */
+.flow { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; margin-top: clamp(28px, 4vw, 44px); }
+.flow-end { font-size: clamp(1rem, 1.6vw, 1.3rem); color: var(--ink-soft); white-space: nowrap; }
+.flow-goal { color: var(--tape-dark); }
+.flow-bar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px; }
+.flow-bar a {
+  display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 18px 0 22px;
+  text-decoration: none; color: #fff;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+  transition: filter .15s, transform .15s;
+}
+.flow-bar li:first-child a { clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%); padding-left: 14px; }
+.flow-bar li:nth-child(1) a { background: #b9d3ff; color: var(--ink); }
+.flow-bar li:nth-child(2) a { background: #7fb0ff; color: var(--ink); }
+.flow-bar li:nth-child(3) a { background: #3f86ff; }
+.flow-bar li:nth-child(4) a { background: var(--tape-dark); }
+.flow-bar li:nth-child(5) a { background: var(--ink); }
+.flow-bar a:hover { filter: brightness(1.08); transform: translateY(-2px); }
+.flow-bar i { font-style: normal; font-weight: 800; font-stretch: 80%; font-size: .8rem; opacity: .75; }
+.flow-bar b { font-weight: 850; font-stretch: 95%; text-transform: uppercase; font-size: clamp(.78rem, 1.3vw, 1rem); letter-spacing: .02em; }
+@media (max-width: 700px) {
+  .flow { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .flow-bar { grid-column: 1 / -1; order: 2; }
+  .flow-start { order: 1; }
+  .flow-goal { order: 1; text-align: right; }
+  .flow-bar a { height: 44px; padding: 0 10px 0 16px; }
+  .flow-bar li:first-child a { padding-left: 8px; }
+  .flow-bar i { display: none; }
+  .flow-bar b { font-size: .7rem; letter-spacing: 0; font-stretch: 75%; }
+}
+@media (max-width: 380px) {
+  .flow-bar { gap: 2px; }
+  .flow-bar a { padding: 0 8px 0 13px; clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 50%, calc(100% - 9px) 100%, 0 100%, 9px 50%); }
+  .flow-bar li:first-child a { padding-left: 5px; clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 50%, calc(100% - 9px) 100%, 0 100%); }
+  .flow-bar b { font-size: .6rem; font-stretch: 62%; }
+}
+
 .phases { background: var(--white); }
 .phases-title { max-width: none; font-size: clamp(1.7rem, 4.4vw, 3.4rem); }
 .phase-rows { margin-top: clamp(32px, 5vw, 56px); border-top: 3px solid var(--ink); }
