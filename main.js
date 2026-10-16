@@ -1,10 +1,4 @@
 (function () {
-  // Header: Hintergrund beim Scrollen verstärken
-  var header = document.querySelector('.site-header');
-  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 20); }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
   // Mobile Navigation
   var toggle = document.querySelector('.nav-toggle');
   var list = document.getElementById('nav-list');
@@ -25,17 +19,6 @@
   // Jahr im Footer
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
-
-  // Sanftes Einblenden beim Scrollen
-  var targets = document.querySelectorAll('.section-head, .phase, .offer, .special-card, .special-media, .tagline-card, .audience-cards li, .steps li, .referent-grid > *, .flyer-grid > *, .contact-grid > *');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    targets.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
-  }
 
   // Kontaktformular: öffnet das E-Mail-Programm mit vorausgefüllter Anfrage
   var form = document.getElementById('contact-form');
