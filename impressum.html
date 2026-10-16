@@ -3,23 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Impressum – Thorsten Büscher Sportphysiotherapie</title>
-  <meta name="robots" content="noindex">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <title>Impressum | Thorsten Büscher Sportphysiotherapie</title>
+  <meta name="description" content="Impressum">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://physio-team-buescher.vercel.app/impressum">
+  <meta name="theme-color" content="#0b1426">
+  <meta name="author" content="Thorsten Büscher">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Sportphysiotherapie neu gedacht">
+  <meta property="og:url" content="https://physio-team-buescher.vercel.app/impressum">
+  <meta property="og:title" content="Impressum | Thorsten Büscher Sportphysiotherapie">
+  <meta property="og:description" content="Impressum">
+  <meta property="og:image" content="https://physio-team-buescher.vercel.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-  <header class="site-header">
+<body class="page-impressum">
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header" id="top">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="Zur Startseite">
+      <a class="brand" href="/" aria-label="Startseite">
         <span class="brand-name">Thorsten Büscher</span>
         <span class="brand-sub">Sportphysiotherapie</span>
       </a>
-      <a class="btn btn-tape" href="index.html#kontakt">Kurs anfragen</a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">
+          <span class="sr-only">Menü</span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="/inhalte">Inhalte</a></li>
+          <li><a href="/referent">Referent</a></li>
+          <li><a href="/akademien">Für Akademien</a></li>
+          <li><a href="/#kontakt" class="btn btn-tape">Termin abstimmen</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
-  <main class="legal">
-    <div class="wrap">
+
+  <main id="main">
+    <section class="legal">
+      <div class="wrap">
       <h1>Impressum</h1>
       <p class="todo"><strong>Hinweis:</strong> Bitte die mit [ ] markierten Angaben (ladungsfähige Anschrift) vor dem Livegang ergänzen.</p>
       <h2>Angaben gemäß § 5 DDG</h2>
@@ -35,14 +62,18 @@
       <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
       <h2>Haftung für Inhalte und Links</h2>
       <p>Die Inhalte dieser Seite wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Für Inhalte verlinkter externer Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
-    </div>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <p class="script">Therapie trifft Training.</p>
-      <p>© 2026 Thorsten Büscher</p>
-      <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+      <p class="marker">Therapie trifft Training.</p>
+      <p>© <span id="year">2026</span> Thorsten Büscher</p>
+      <nav aria-label="Weitere Seiten"><a href="/inhalte">Inhalte</a><a href="/referent">Referent</a><a href="/akademien">Für Akademien</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></nav>
     </div>
   </footer>
+
+  <script src="/main.js" defer></script>
 </body>
 </html>

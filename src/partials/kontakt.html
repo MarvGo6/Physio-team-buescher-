@@ -1,0 +1,36 @@
+    <!-- KONTAKT -->
+    <section class="sec contact" id="kontakt">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="sec-tag"><span class="tape">Kontakt</span></p>
+          <h2 class="h2">Termin abstimmen</h2>
+          <p>Am schnellsten geht es am Telefon. Oder Sie schreiben kurz, worum es geht.</p>
+          <div class="contact-person">
+            <img src="/assets/img/thorsten-face.jpg" alt="" width="320" height="320" loading="lazy">
+            <p><b>Thorsten Büscher</b><span>meldet sich persönlich zurück</span></p>
+          </div>
+          <a class="phone-big" href="tel:+491634439593">0163 44 39 593</a>
+          <a class="mail-big" href="mailto:physioteambuescher@gmail.com">physioteambuescher@gmail.com</a>
+          <a class="flyer-link" href="/assets/flyer-sportphysiotherapie-neu-gedacht.jpg" download>
+            <img src="/assets/flyer-sportphysiotherapie-neu-gedacht.jpg" alt="" width="1492" height="1054" loading="lazy">
+            <span>Kursflyer herunterladen</span>
+          </a>
+        </div>
+
+        <form class="form" id="contact-form" novalidate>
+          <div class="row">
+            <label>Name*<input name="name" autocomplete="name" required></label>
+            <label>Einrichtung<input name="org" autocomplete="organization"></label>
+          </div>
+          <div class="row">
+            <label>E-Mail*<input name="email" type="email" autocomplete="email" required></label>
+            <label>Telefon<input name="phone" type="tel" autocomplete="tel"></label>
+          </div>
+          <label>Zeitraum und Ort<input name="when" placeholder="z. B. März 2027, Köln"></label>
+          <label>Nachricht*<textarea name="message" rows="5" required placeholder="Teilnehmerzahl, Rahmen, Fragen"></textarea></label>
+          <label class="consent"><input type="checkbox" name="consent" required> <span>Meine Angaben dürfen zur Bearbeitung der Anfrage verwendet werden (<a href="datenschutz.html">Datenschutz</a>).*</span></label>
+          <button class="btn btn-tape" type="submit">E-Mail vorbereiten</button>
+          <p class="form-note" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>

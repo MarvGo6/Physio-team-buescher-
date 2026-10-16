@@ -1,4 +1,11 @@
 (function () {
+  // Alte Sprungmarken der früheren Einzelseite auf die neuen Unterseiten umleiten
+  var moved = { '#referent': '/referent', '#inhalte': '/inhalte', '#akademien': '/akademien' };
+  if ((location.pathname === '/' || location.pathname === '/index.html') && moved[location.hash]) {
+    location.replace(moved[location.hash]);
+    return;
+  }
+
   // Mobile Navigation
   var toggle = document.querySelector('.nav-toggle');
   var list = document.getElementById('nav-list');

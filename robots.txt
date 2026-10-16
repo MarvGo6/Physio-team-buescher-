@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://physio-team-buescher.vercel.app/sitemap.xml
