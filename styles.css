@@ -265,9 +265,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .ref-photo { position: relative; margin: 0; max-width: 470px; box-shadow: 14px 14px 0 var(--tape); }
 .ref-photo img { width: 100%; aspect-ratio: 844 / 780; object-fit: cover; }
 .ref-photo .t1 { position: absolute; top: -14px; left: -26px; width: 130px; height: 32px; transform: rotate(-30deg); }
-.taped-shot { position: absolute; right: 0; bottom: 0; margin: 0; width: clamp(130px, 15vw, 190px); padding: 8px 8px 8px; background: var(--paper); transform: rotate(4deg); box-shadow: 0 16px 30px -14px rgba(0,0,0,.7); }
-.taped-shot img { width: 100%; aspect-ratio: 774 / 1000; object-fit: cover; }
+.taped-shot { position: relative; margin: 0; padding: 8px 8px 10px; background: var(--paper); transform: rotate(3deg); box-shadow: 0 16px 30px -14px rgba(0,0,0,.7); }
+.taped-shot img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 25%; }
 .taped-shot .t2 { position: absolute; top: -12px; left: 50%; width: 80px; height: 26px; transform: translateX(-50%) rotate(-6deg); }
+.taped-shot figcaption, .fun-shot figcaption { margin-top: 6px; color: var(--ink); font-size: 1rem; line-height: 1.15; text-align: center; }
+.ref-media { padding: 0; }
+.ref-snaps { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 470px; margin: -56px 0 0 28px; }
+.fun-shot { position: relative; margin: 0; padding: 8px 8px 10px; background: var(--paper); transform: rotate(-4deg); box-shadow: 0 16px 30px -14px rgba(0,0,0,.7); }
+.fun-shot img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 30%; }
+.fun-shot .t3 { position: absolute; top: -12px; right: 18px; width: 76px; height: 24px; transform: rotate(10deg); }
+
 .ref-name { font-weight: 900; font-stretch: 125%; letter-spacing: -.03em; line-height: .92; font-size: clamp(2.6rem, 6.4vw, 5.4rem); margin-bottom: 1.4rem; }
 .referent .lead { color: #fff; }
 .ref-text > p:not(.lead):not(.sec-tag) { color: rgba(255,255,255,.72); max-width: 52ch; }
@@ -276,8 +283,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .bio li::before { content: ""; position: absolute; left: 0; top: 1.2em; width: 10px; height: 4px; background: var(--tape); transform: skewX(-20deg); }
 @media (max-width: 860px) {
   .ref-grid { grid-template-columns: 1fr; }
-  .ref-media { max-width: 460px; padding-bottom: 56px; }
-  .ref-photo { margin-left: 10px; margin-right: 40px; }
+  .ref-media { max-width: 460px; padding-bottom: 16px; }
+  .ref-media .ref-photo { margin-left: 10px; margin-right: 20px; }
+  .ref-snaps { margin: -40px 0 0 16px; gap: 16px; }
 }
 
 /* ---------- Stimmen ---------- */
