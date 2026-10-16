@@ -20,6 +20,28 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  // Video: spielt stumm, sobald es sichtbar ist (nicht bei reduzierter Bewegung)
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.ph-video').forEach(function (fig) {
+    var video = fig.querySelector('video');
+    var btn = fig.querySelector('.video-sound');
+    if (reduce) video.setAttribute('controls', '');
+    if ('IntersectionObserver' in window && !reduce) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+          else video.pause();
+        });
+      }, { threshold: 0.35 }).observe(video);
+    }
+    if (btn) btn.addEventListener('click', function () {
+      video.muted = !video.muted;
+      if (!video.muted && video.paused) video.play();
+      btn.setAttribute('aria-pressed', String(!video.muted));
+      btn.textContent = video.muted ? 'Ton an' : 'Ton aus';
+    });
+  });
+
   // Kontaktformular: öffnet das E-Mail-Programm mit vorausgefüllter Anfrage
   var form = document.getElementById('contact-form');
   if (form) {

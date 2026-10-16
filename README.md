@@ -11,7 +11,7 @@ von Thorsten Büscher, ausgerichtet auf Fortbildungsschulen und Akademien.
 - Rezensionen: Abschnitt „Stimmen“ in `index.html` enthält Platzhalter. Nur echte, freigegebene Rückmeldungen eintragen
   (Anleitung im HTML-Kommentar dort).
 - Impressum/Datenschutz: ladungsfähige Anschrift ergänzen (`impressum.html`, `datenschutz.html`).
-- Fotos in `assets/img/` stammen von Thorsten Büscher. Vor dem Livegang klären: Einverständnis der abgebildeten
+- Fotos in `assets/img/` und Video in `assets/video/` stammen von Thorsten Büscher. Vor dem Livegang klären: Einverständnis der abgebildeten
   Patient:innen/Teilnehmenden und Bildrechte (z. B. Screenshots aus Videos von PINO).
 - Flyer als PDF bereitstellen (`assets/`) und Download-Link in `index.html` anpassen.
 

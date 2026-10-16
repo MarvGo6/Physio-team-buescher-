@@ -177,12 +177,34 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .phase-rows ul { display: grid; gap: 8px; padding-top: 4px; }
 .phase-rows ul li { position: relative; padding-left: 20px; color: var(--ink-soft); line-height: 1.4; }
 .phase-rows ul li::before { content: ""; position: absolute; left: 0; top: .55em; width: 10px; height: 4px; background: var(--tape); transform: skewX(-20deg); }
+.phase-rows > li.has-video { grid-template-columns: 120px minmax(200px, 1fr) 1fr 240px; }
+.ph-video { position: relative; margin: 0; align-self: start; transform: rotate(1.5deg); }
+.ph-video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: var(--ink); border: 6px solid var(--white); box-shadow: 8px 8px 0 var(--tape); }
+.ph-video figcaption { margin-top: 14px; font-size: 1.2rem; color: var(--ink); transform: rotate(-2deg); }
+.video-sound {
+  position: absolute; right: 14px; top: 14px; padding: .35em .8em; border: 0; cursor: pointer;
+  font: inherit; font-weight: 700; font-stretch: 75%; text-transform: uppercase; letter-spacing: .08em; font-size: .78rem;
+  background: rgba(11,20,38,.8); color: #fff;
+}
+.video-sound[aria-pressed="true"] { background: var(--tape); }
+@media (max-width: 1100px) {
+  .phase-rows > li.has-video { grid-template-columns: 100px 1fr 220px; }
+  .has-video .ph-name { grid-column: 2; }
+  .has-video ul { grid-column: 2; }
+  .phase-rows > li.has-video { grid-template-rows: auto 1fr; }
+  .has-video ul { align-self: start; }
+  .has-video .ph-video { grid-column: 3; grid-row: 1 / span 2; }
+}
 @media (max-width: 900px) {
   .phase-rows > li { grid-template-columns: 76px 1fr; }
+  .phase-rows > li.has-video { grid-template-columns: 76px 1fr; }
+  .has-video .ph-video { grid-column: 2; grid-row: auto; max-width: 280px; margin-top: 12px; }
   .phase-rows ul { grid-column: 2; grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
-  .phase-rows > li { grid-template-columns: 1fr; gap: 10px; }
+  .phase-rows > li, .phase-rows > li.has-video { grid-template-columns: 1fr; gap: 10px; }
+  .has-video .ph-name, .has-video ul, .has-video .ph-video { grid-column: 1; }
+  .has-video .ph-video { max-width: 300px; margin: 16px auto 8px; }
   .phase-rows ul { grid-column: 1; }
   .ph-no { font-size: 2.6rem; }
 }
