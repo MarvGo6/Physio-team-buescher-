@@ -89,7 +89,7 @@
       var payload = Object.assign({ _subject: subject, _replyto: d.get('email'), _template: 'table', _captcha: 'false' }, fields);
       button.disabled = true;
       setNote('Wird gesendet …');
-      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(form.dataset.email), {
+      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(form.dataset.target || form.dataset.email), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(payload)

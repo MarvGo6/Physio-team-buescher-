@@ -26,8 +26,10 @@ SRC = ROOT / "src"
 #            im Gmail-Postfach angekommen ist. Dann neu bauen.
 # ---------------------------------------------------------------------------
 SITE_URL = "https://physio-buescher.de"
-MAIL_LIVE = False
+MAIL_LIVE = True
 EMAIL = "kontakt@physio-buescher.de" if MAIL_LIVE else "physioteambuescher@gmail.com"
+# Empfänger des Kontaktformulars (FormSubmit ist für diese Adresse freigeschaltet)
+FORM_TARGET = "physioteambuescher@gmail.com"
 
 PERSON = {
     "@type": "Person",
@@ -205,7 +207,7 @@ def build():
             canonical=canonical, og_image=SITE_URL + p.get("og_image", "/assets/og-image.jpg"),
             jsonld=blocks, nav=nav, cta="#kontakt" if has_contact else "/#kontakt",
             body=body, year=date.today().year)
-        html = html.replace("@@EMAIL@@", EMAIL)
+        html = html.replace("@@FORM_TARGET@@", FORM_TARGET).replace("@@EMAIL@@", EMAIL)
         (ROOT / f"{name}.html").write_text(html)
         if not p.get("noindex"):
             urls.append((canonical, p.get("priority", "0.5")))
