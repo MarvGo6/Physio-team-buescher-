@@ -318,9 +318,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Stimmen ---------- */
 .voices { background: var(--paper-2); }
-.voice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 28px; margin-top: 36px; }
+.voice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 28px; margin-top: 36px; align-items: start; max-width: 1040px; }
 .voice { position: relative; margin: 0; padding: 30px 26px 22px; background: var(--white); border-left: 6px solid var(--tape); display: flex; flex-direction: column; justify-content: space-between; }
-.voice:nth-child(2) { transform: translateY(18px); }
+.voice:nth-child(even) { transform: translateY(18px); }
 .voice blockquote { margin: 0 0 22px; }
 .voice blockquote p { font-size: 1.12rem; line-height: 1.5; margin: 0; }
 .voice blockquote::before { content: ""; display: block; width: 40px; height: 22px; margin-bottom: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 22'%3E%3Cpath d='M8 0h9L10 22H1zM27 0h9l-7 22h-9z' fill='%231a6dff'/%3E%3C/svg%3E") no-repeat; }
@@ -331,7 +331,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .voice.is-placeholder blockquote p, .voice.is-placeholder figcaption { color: var(--ink-soft); font-style: italic; }
 .ph-flag { position: absolute; top: -12px; right: 14px; padding: 2px 10px; background: #ffd84d; color: var(--ink); font-weight: 700; font-stretch: 75%; text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; }
 .voice-note { margin-top: 48px; font-weight: 600; }
-@media (max-width: 960px) { .voice:nth-child(2) { transform: none; } }
+@media (max-width: 960px) { .voice:nth-child(even) { transform: none; } }
 
 /* ---------- Kontakt ---------- */
 .contact { background: var(--white); }
