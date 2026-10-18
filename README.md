@@ -19,6 +19,12 @@ von Thorsten Büscher, ausgerichtet auf Fortbildungsschulen und Akademien.
   Patient:innen/Teilnehmenden und Bildrechte (z. B. Screenshots aus Videos von PINO).
 - Flyer als PDF bereitstellen (`assets/`) und Download-Link in `index.html` anpassen.
 
+## Hosting
+- Läuft auf Vercel (`vercel.json`) und genauso auf Cloudflare Pages (`_headers`; Build-Befehl leer lassen,
+  Ausgabeordner `/`). Saubere URLs wie `/inhalte` funktionieren auf beiden ohne Zusatzkonfiguration.
+- Domain-Plan: .de-Domain bei einem Registrar kaufen, Nameserver auf Cloudflare stellen,
+  E-Mail über Cloudflare Email Routing (`kontakt@…` → bestehendes Gmail).
+
 ## Lokal ansehen
 ```
 python3 -m http.server 8000
