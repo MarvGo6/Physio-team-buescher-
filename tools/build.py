@@ -19,15 +19,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 
-# Bei eigener Domain hier ändern (ohne Schrägstrich am Ende), dann neu bauen.
-SITE_URL = "https://physio-team-buescher.vercel.app"
+# ---------------------------------------------------------------------------
+# DOMAIN-UMSTELLUNG: Sobald physio-buescher.de läuft und die E-Mail-Weiterleitung
+# getestet ist, LIVE = True setzen und neu bauen. Dann ändern sich überall
+# Website-Adresse (Canonical, Sitemap, Google-Daten) und Kontakt-E-Mail.
+# ---------------------------------------------------------------------------
+LIVE = False
+SITE_URL = "https://physio-buescher.de" if LIVE else "https://physio-team-buescher.vercel.app"
+EMAIL = "kontakt@physio-buescher.de" if LIVE else "physioteambuescher@gmail.com"
 
 PERSON = {
     "@type": "Person",
     "@id": f"{SITE_URL}/referent#person",
     "name": "Thorsten Büscher",
     "jobTitle": "Physiotherapeut, DOSB-Sportphysiotherapeut",
-    "email": "mailto:physioteambuescher@gmail.com",
+    "email": f"mailto:{EMAIL}",
     "telephone": "+49 163 4439593",
     "image": f"{SITE_URL}/assets/img/thorsten-portrait.jpg",
     "url": f"{SITE_URL}/referent",
@@ -198,6 +204,7 @@ def build():
             canonical=canonical, og_image=SITE_URL + p.get("og_image", "/assets/og-image.jpg"),
             jsonld=blocks, nav=nav, cta="#kontakt" if has_contact else "/#kontakt",
             body=body, year=date.today().year)
+        html = html.replace("@@EMAIL@@", EMAIL)
         (ROOT / f"{name}.html").write_text(html)
         if not p.get("noindex"):
             urls.append((canonical, p.get("priority", "0.5")))

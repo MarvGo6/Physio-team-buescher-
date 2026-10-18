@@ -22,8 +22,10 @@ von Thorsten Büscher, ausgerichtet auf Fortbildungsschulen und Akademien.
 ## Hosting
 - Läuft auf Vercel (`vercel.json`) und genauso auf Cloudflare Pages (`_headers`; Build-Befehl leer lassen,
   Ausgabeordner `/`). Saubere URLs wie `/inhalte` funktionieren auf beiden ohne Zusatzkonfiguration.
-- Domain-Plan: .de-Domain bei einem Registrar kaufen, Nameserver auf Cloudflare stellen,
-  E-Mail über Cloudflare Email Routing (`kontakt@…` → bestehendes Gmail).
+- Domain-Plan: `physio-buescher.de` bei INWX kaufen, Nameserver auf Cloudflare stellen,
+  E-Mail über Cloudflare Email Routing (`kontakt@physio-buescher.de` → bestehendes Gmail).
+- Umstellung der Seite: in `tools/build.py` `LIVE = True` setzen und `python3 tools/build.py` ausführen.
+  Damit wechseln Website-Adresse (Canonical, Sitemap, strukturierte Daten) und Kontakt-E-Mail überall.
 
 ## Lokal ansehen
 ```

@@ -78,9 +78,9 @@
         '',
         d.get('message')
       ].join('\n');
-      window.location.href = 'mailto:physioteambuescher@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      window.location.href = 'mailto:' + form.dataset.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       note.classList.remove('error');
-      note.textContent = 'Ihr E-Mail-Programm wird geöffnet. Falls nicht, schreiben Sie bitte direkt an physioteambuescher@gmail.com.';
+      note.textContent = 'Ihr E-Mail-Programm wird geöffnet. Falls nicht, schreiben Sie bitte direkt an ' + form.dataset.email + '.';
     });
   }
 })();
