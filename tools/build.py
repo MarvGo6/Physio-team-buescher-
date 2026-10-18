@@ -38,7 +38,7 @@ PERSON = {
     "telephone": "+49 163 4439593",
     "image": f"{SITE_URL}/assets/img/thorsten-portrait.jpg",
     "url": f"{SITE_URL}/referent",
-    "address": {"@type": "PostalAddress", "addressLocality": "Köln", "addressCountry": "DE"},
+    "address": {"@type": "PostalAddress", "streetAddress": "Georgshof 1", "postalCode": "51503", "addressLocality": "Rösrath", "addressCountry": "DE"},
     "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": n} for n in [
         "Physiotherapeut", "Manuelle Therapie", "Sportphysiotherapeut DOSB", "Instructor Kinesiologisches Taping",
         "Ergonomie-Instructor", "Golf-Physio-Trainer"]],
