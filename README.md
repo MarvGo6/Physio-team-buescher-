@@ -7,7 +7,7 @@ von Thorsten Büscher, ausgerichtet auf Fortbildungsschulen und Akademien.
 - Seiten werden aus `src/` zusammengesetzt: `python3 tools/build.py` (erzeugt die `*.html` im Hauptordner,
   `sitemap.xml` und `robots.txt`). Gemeinsame Bausteine wie „Stimmen“ und „Kontakt“ liegen in `src/partials/`
   und erscheinen dadurch auf allen Seiten. Erzeugte `*.html` nicht direkt bearbeiten.
-- Titel, Beschreibungen und strukturierte Daten (SEO) stehen in `tools/build.py`. Bei eigener Domain dort `SITE_URL` ändern.
+- Titel, Beschreibungen und strukturierte Daten (SEO) stehen in `tools/build.py` (`SITE_URL` = Hauptadresse).
 - Schriften lokal eingebunden (`assets/fonts`: Archivo variabel, Permanent Marker), keine Google-Verbindung, keine Cookies.
 - Kontaktformular öffnet das E-Mail-Programm (mailto) mit vorausgefüllter Anfrage.
 
@@ -22,10 +22,10 @@ von Thorsten Büscher, ausgerichtet auf Fortbildungsschulen und Akademien.
 ## Hosting
 - Läuft auf Vercel (`vercel.json`) und genauso auf Cloudflare Pages (`_headers`; Build-Befehl leer lassen,
   Ausgabeordner `/`). Saubere URLs wie `/inhalte` funktionieren auf beiden ohne Zusatzkonfiguration.
-- Domain-Plan: `physio-buescher.de` bei INWX kaufen, Nameserver auf Cloudflare stellen,
-  E-Mail über Cloudflare Email Routing (`kontakt@physio-buescher.de` → bestehendes Gmail).
-- Umstellung der Seite: in `tools/build.py` `LIVE = True` setzen und `python3 tools/build.py` ausführen.
-  Damit wechseln Website-Adresse (Canonical, Sitemap, strukturierte Daten) und Kontakt-E-Mail überall.
+- Domain `physio-buescher.de` (INWX, INWX-Nameserver). DNS bei INWX: A `@` und `www` → `76.76.21.21` (Vercel),
+  MX `mx1/mx2.forwardemail.net`, TXT `forward-email=kontakt:…` (Weiterleitung an Gmail) und SPF.
+- Vercel baut bei jedem Deployment selbst: Build-Befehl `python3 tools/build.py`, Ausgabe `.`.
+- Kontakt-E-Mail: in `tools/build.py` `MAIL_LIVE = True` setzen, sobald die Weiterleitung getestet ist.
 
 ## Lokal ansehen
 ```

@@ -20,13 +20,14 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 
 # ---------------------------------------------------------------------------
-# DOMAIN-UMSTELLUNG: Sobald physio-buescher.de läuft und die E-Mail-Weiterleitung
-# getestet ist, LIVE = True setzen und neu bauen. Dann ändern sich überall
-# Website-Adresse (Canonical, Sitemap, Google-Daten) und Kontakt-E-Mail.
+# Domain und Kontakt-E-Mail
+# SITE_URL: Hauptadresse der Website (Canonical, Sitemap, Google-Daten).
+# MAIL_LIVE: erst auf True setzen, wenn eine Test-Mail an kontakt@physio-buescher.de
+#            im Gmail-Postfach angekommen ist. Dann neu bauen.
 # ---------------------------------------------------------------------------
-LIVE = False
-SITE_URL = "https://physio-buescher.de" if LIVE else "https://physio-team-buescher.vercel.app"
-EMAIL = "kontakt@physio-buescher.de" if LIVE else "physioteambuescher@gmail.com"
+SITE_URL = "https://physio-buescher.de"
+MAIL_LIVE = False
+EMAIL = "kontakt@physio-buescher.de" if MAIL_LIVE else "physioteambuescher@gmail.com"
 
 PERSON = {
     "@type": "Person",
