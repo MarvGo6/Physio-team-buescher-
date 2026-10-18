@@ -67,6 +67,8 @@ COURSE = {
                 "Kinesiologisches Taping und Sporttaping", "Flossing", "Functional Therapy Training",
                 "Blood Flow Restriction Training", "Return to Sport", "Return to Performance"],
     "timeRequired": "P2D",
+    "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "onsite", "courseWorkload": "P2D",
+                          "location": {"@type": "Place", "name": "Deutschlandweit, bei der ausrichtenden Akademie", "address": {"@type": "PostalAddress", "addressCountry": "DE"}}},
 }
 
 NAV = [("/inhalte", "Inhalte", "inhalte"), ("/referent", "Referent", "referent"), ("/akademien", "Für Akademien", "akademien")]
@@ -83,7 +85,7 @@ PAGES = {
         title="Sportphysiotherapie-Fortbildung: neu gedacht | Thorsten Büscher",
         description=("Zwei Tage Sportphysiotherapie für Physiotherapeut:innen: vom ersten Befund bis zur Rückkehr in "
                      "den Wettkampf. Assess, Treat, Train, Return, Perform. Referent: Thorsten Büscher, "
-                     "DOSB-Sportphysiotherapeut, 5 Jahre Olympiastützpunkt Köln."),
+                     "DOSB-Sportphysiotherapeut, 5 Jahre Olympiastützpunkt Köln. Kurse deutschlandweit."),
         og_image="/assets/og-image.jpg",
         jsonld=[{"@type": "WebSite", "name": "Sportphysiotherapie neu gedacht", "url": f"{SITE_URL}/", "inLanguage": "de"},
                 COURSE, PERSON],
@@ -113,7 +115,7 @@ PAGES = {
         path="/akademien",
         title="Sportphysiotherapie-Fortbildung für Akademien und Fortbildungsschulen",
         description=("Fertiges 2-Tages-Kurskonzept für Ihr Fortbildungsprogramm: Sportphysiotherapie von der Verletzung "
-                     "zur Performance, mit Referent Thorsten Büscher. Termin, Ort und Rahmen nach Absprache."),
+                     "zur Performance, mit Referent Thorsten Büscher. Deutschlandweit in Ihren Räumen, Termin und Rahmen nach Absprache."),
         og_image="/assets/og-image.jpg",
         jsonld=[COURSE, crumbs(("Startseite", "/"), ("Für Akademien", "/akademien"))],
         priority="0.9",
