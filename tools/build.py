@@ -40,6 +40,8 @@ PERSON = {
     "telephone": "+49 163 4439593",
     "image": f"{SITE_URL}/assets/img/thorsten-portrait.jpg",
     "url": f"{SITE_URL}/referent",
+    "worksFor": {"@type": "Organization", "name": "corpus as", "address": {"@type": "PostalAddress", "addressLocality": "Köln", "addressCountry": "DE"}},
+    "workLocation": {"@type": "Place", "name": "Köln"},
     "address": {"@type": "PostalAddress", "streetAddress": "Georgshof 1", "postalCode": "51503", "addressLocality": "Rösrath", "addressCountry": "DE"},
     "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": n} for n in [
         "Physiotherapeut", "Manuelle Therapie", "Sportphysiotherapeut DOSB", "Instructor Kinesiologisches Taping",
@@ -100,7 +102,8 @@ PAGES = {
         path="/referent",
         title="Thorsten Büscher: DOSB-Sportphysiotherapeut aus Köln | Referent",
         description=("Thorsten Büscher: Physiotherapeut, Manuelle Therapie, Sportphysiotherapeut DOSB, Instructor für "
-                     "kinesiologisches Taping. 5 Jahre Olympiastützpunkt Köln, Referent u. a. an der r.o.m.b.u.s. Akademie."),
+                     "kinesiologisches Taping. Über 15 Jahre in Köln, 5 Jahre Olympiastützpunkt Köln, heute bei corpus as Köln. "
+                     "Referent u. a. an der r.o.m.b.u.s. Akademie."),
         og_image="/assets/img/thorsten-portrait.jpg",
         jsonld=[{"@type": "ProfilePage", "mainEntity": PERSON},
                 crumbs(("Startseite", "/"), ("Referent", "/referent"))],
