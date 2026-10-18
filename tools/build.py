@@ -102,7 +102,7 @@ PAGES = {
     ),
     "referent": dict(
         path="/referent",
-        title="Thorsten Büscher: DOSB-Sportphysiotherapeut aus Köln | Referent",
+        title="Thorsten Büscher: DOSB-Sportphysiotherapeut und Referent | Sportphysiotherapie neu gedacht",
         description=("Thorsten Büscher: Physiotherapeut, Manuelle Therapie, Sportphysiotherapeut DOSB, Instructor für "
                      "kinesiologisches Taping. Über 15 Jahre in Köln, 5 Jahre Olympiastützpunkt Köln, heute bei corpus as Köln. "
                      "Referent u. a. an der r.o.m.b.u.s. Akademie."),
