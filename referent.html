@@ -174,6 +174,7 @@
             <li>r.o.m.b.u.s. Akademie</li>
             <li>VPT / Fobiakademie Engelskirchen</li>
             <li>Akademie Klinikum Osnabrück</li>
+            <li>PhysioCampus Dortmund</li>
           </ul>
         </div>
       </div>
@@ -206,27 +207,19 @@
 
         <!--
           REZENSIONEN PFLEGEN:
-          Nur echte, freigegebene Rückmeldungen eintragen (Name/Funktion nur mit Einverständnis).
-          Für jede echte Rezension: Klasse "is-placeholder" entfernen, Zitat und Angaben ersetzen
-          und das <span class="ph-flag"> löschen.
+          Nur echte, freigegebene Rückmeldungen eintragen (Name nur mit Einverständnis).
+          Weitere Stimmen als zusätzliche <figure class="voice"> in .voice-more einfügen.
         -->
-        <div class="voice-grid">
-          <figure class="voice is-placeholder">
-            <span class="ph-flag">Platzhalter</span>
-            <blockquote><p>Hier steht die Rückmeldung einer Teilnehmerin oder eines Teilnehmers. Zum Beispiel, was am meisten für die eigene Arbeit gebracht hat.</p></blockquote>
-            <figcaption><b>Vorname N.</b><span>Physiotherapeut:in, Ort</span></figcaption>
-          </figure>
-          <figure class="voice is-placeholder">
-            <span class="ph-flag">Platzhalter</span>
-            <blockquote><p>Platz für eine zweite echte Rezension, gern zu den praktischen Inhalten wie Taping, Dry Needling oder Return to Sport.</p></blockquote>
-            <figcaption><b>Vorname N.</b><span>Klinik oder Verein</span></figcaption>
-          </figure>
-          <figure class="voice is-placeholder">
-            <span class="ph-flag">Platzhalter</span>
-            <blockquote><p>Platz für die Rückmeldung einer Akademie oder Fortbildungsschule, die den Kurs bereits angeboten hat.</p></blockquote>
-            <figcaption><b>Name</b><span>Akademie, Ort</span></figcaption>
-          </figure>
-        </div>
+        <figure class="voice voice-main">
+          <p class="voice-pull">„Für mich eine wirklich gelungene Fortbildung mit hohem Praxisnutzen.“</p>
+          <blockquote>
+            <p>Ich habe am Intensivkurs „Kinesiologisches Taping“ mit Thorsten Büscher am PhysioCampus Dortmund teilgenommen und kann den Kurs absolut weiterempfehlen.</p>
+            <p>Besonders gut fand ich die Kombination aus verständlich vermittelter Theorie und sehr viel Praxis. Thorsten schafft es, die verschiedenen Tape-Techniken nicht einfach nur zu zeigen, sondern auch zu erklären, wann und warum man sie sinnvoll einsetzen kann. Man merkt sofort, dass er über sehr viel Erfahrung aus der Physiotherapie und dem Sport verfügt und die Inhalte selbst täglich in der Praxis anwendet.</p>
+            <p>Trotz des umfangreichen Programms war der Kurs kurzweilig, praxisnah und sehr angenehm aufgebaut. Es gab genügend Zeit zum eigenen Üben, für individuelle Fragen und für direkte Korrekturen. Viele der gezeigten Techniken kann man anschließend unmittelbar bei Patienten einsetzen.</p>
+            <p>Wer kinesiologisches Taping fundiert lernen oder seine bisherigen Kenntnisse erweitern möchte, ist bei Thorsten genau richtig.</p>
+          </blockquote>
+          <figcaption><b>Teilnehmer:in</b><span>Intensivkurs „Kinesiologisches Taping“ · PhysioCampus Dortmund</span></figcaption>
+        </figure>
         <p class="voice-note">Sie waren im Kurs? <a href="mailto:physioteambuescher@gmail.com?subject=Feedback%20zum%20Kurs%20Sportphysiotherapie%20neu%20gedacht">Schicken Sie mir Ihr Feedback.</a></p>
       </div>
     </section>
@@ -261,8 +254,9 @@
           </div>
           <label>Zeitraum und Ort<input name="when" placeholder="z. B. März 2027, Köln"></label>
           <label>Nachricht*<textarea name="message" rows="5" required placeholder="Teilnehmerzahl, Rahmen, Fragen"></textarea></label>
-          <label class="consent"><input type="checkbox" name="consent" required> <span>Meine Angaben dürfen zur Bearbeitung der Anfrage verwendet werden (<a href="datenschutz.html">Datenschutz</a>).*</span></label>
-          <button class="btn btn-tape" type="submit">E-Mail vorbereiten</button>
+          <label class="consent"><input type="checkbox" name="consent" required> <span>Meine Angaben dürfen zur Bearbeitung der Anfrage verwendet werden (<a href="/datenschutz">Datenschutz</a>).*</span></label>
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-tape" type="submit">Anfrage senden</button>
           <p class="form-note" role="status" aria-live="polite"></p>
         </form>
       </div>

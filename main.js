@@ -49,38 +49,60 @@
     });
   });
 
-  // Kontaktformular: öffnet das E-Mail-Programm mit vorausgefüllter Anfrage
+  // Kontaktformular: sendet die Anfrage direkt per E-Mail (Dienst FormSubmit).
+  // Fällt der Dienst aus, öffnet sich als Ersatz das E-Mail-Programm mit vorausgefüllter Nachricht.
   var form = document.getElementById('contact-form');
   if (form) {
     var note = form.querySelector('.form-note');
+    var button = form.querySelector('button[type="submit"]');
+    var setNote = function (text, cls) {
+      note.textContent = text;
+      note.className = 'form-note' + (cls ? ' ' + cls : '');
+    };
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var required = form.querySelectorAll('[required]');
       var ok = true;
-      required.forEach(function (field) {
+      form.querySelectorAll('[required]').forEach(function (field) {
         var valid = field.type === 'checkbox' ? field.checked : field.value.trim() !== '' && field.checkValidity();
         field.classList.toggle('invalid', !valid);
         if (!valid) ok = false;
       });
-      if (!ok) {
-        note.textContent = 'Bitte füllen Sie alle Pflichtfelder (*) korrekt aus.';
-        note.classList.add('error');
-        return;
-      }
+      if (!ok) { setNote('Bitte füllen Sie alle Pflichtfelder (*) korrekt aus.', 'error'); return; }
+
       var d = new FormData(form);
+      if (d.get('_honey')) return; // Spam-Schutz: unsichtbares Feld wurde ausgefüllt
       var subject = 'Kursanfrage „Sportphysiotherapie neu gedacht“' + (d.get('org') ? ' – ' + d.get('org') : '');
-      var body = [
-        'Name: ' + d.get('name'),
-        'Einrichtung: ' + (d.get('org') || '–'),
-        'E-Mail: ' + d.get('email'),
-        'Telefon: ' + (d.get('phone') || '–'),
-        'Wunschzeitraum / Ort: ' + (d.get('when') || '–'),
-        '',
-        d.get('message')
-      ].join('\n');
-      window.location.href = 'mailto:' + form.dataset.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      note.classList.remove('error');
-      note.textContent = 'Ihr E-Mail-Programm wird geöffnet. Falls nicht, schreiben Sie bitte direkt an ' + form.dataset.email + '.';
+      var fields = {
+        Name: d.get('name'),
+        Einrichtung: d.get('org') || '–',
+        'E-Mail': d.get('email'),
+        Telefon: d.get('phone') || '–',
+        'Zeitraum und Ort': d.get('when') || '–',
+        Nachricht: d.get('message')
+      };
+      var mailtoFallback = function () {
+        var body = Object.keys(fields).map(function (k) { return k + ': ' + fields[k]; }).join('\n');
+        window.location.href = 'mailto:' + form.dataset.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        setNote('Die Anfrage konnte nicht direkt gesendet werden. Ihr E-Mail-Programm wird geöffnet – oder schreiben Sie an ' + form.dataset.email + '.', 'error');
+      };
+
+      var payload = Object.assign({ _subject: subject, _replyto: d.get('email'), _template: 'table', _captcha: 'false' }, fields);
+      button.disabled = true;
+      setNote('Wird gesendet …');
+      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(form.dataset.email), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (res) {
+        return res.json().then(function (data) {
+          if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || 'Fehler');
+        });
+      }).then(function () {
+        form.reset();
+        setNote('Danke! Ihre Anfrage ist angekommen. Thorsten Büscher meldet sich persönlich bei Ihnen.', 'ok');
+      }).catch(mailtoFallback).then(function () {
+        button.disabled = false;
+      });
     });
   }
 })();
