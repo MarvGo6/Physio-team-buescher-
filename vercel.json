@@ -3,14 +3,67 @@
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/akademie",
+      "destination": "/akademien",
+      "permanent": true
+    },
+    {
+      "source": "/inhalt",
+      "destination": "/inhalte",
+      "permanent": true
+    },
+    {
+      "source": "/kursinhalte",
+      "destination": "/inhalte",
+      "permanent": true
+    },
+    {
+      "source": "/kurs",
+      "destination": "/inhalte",
+      "permanent": true
+    },
+    {
+      "source": "/referenten",
+      "destination": "/referent",
+      "permanent": true
+    },
+    {
+      "source": "/thorsten-buescher",
+      "destination": "/referent",
+      "permanent": true
+    },
+    {
+      "source": "/kontakt",
+      "destination": "/#kontakt",
+      "permanent": true
+    },
+    {
+      "source": "/stimmen",
+      "destination": "/#stimmen",
+      "permanent": true
     }
   ]
 }
