@@ -461,3 +461,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .form-note.ok { color: #1b7a3a; font-weight: 600; }
 .form button[disabled] { opacity: .6; cursor: wait; }
+
+/* Zertifikat-Muster */
+.cert-sec { background: var(--paper-2); }
+.cert-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
+.cert-grid > div > p:not(.lead):not(.sec-tag) { color: var(--ink-soft); }
+.cert-note { font-size: .92rem; font-style: italic; }
+.cert-img { position: relative; display: block; max-width: 420px; justify-self: center; background: #fff; padding: 10px; box-shadow: 10px 10px 0 var(--tape), 0 20px 40px -24px rgba(11,20,38,.5); transform: rotate(1.5deg); transition: transform .2s; }
+.cert-img:hover { transform: rotate(0); }
+.cert-img img { width: 100%; height: auto; }
+.cert-img .tape { position: absolute; top: -14px; left: 50%; width: 110px; height: 30px; transform: translateX(-50%) rotate(-4deg); }
+@media (max-width: 860px) { .cert-grid { grid-template-columns: 1fr; } .cert-img { max-width: 320px; } }

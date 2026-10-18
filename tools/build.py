@@ -41,7 +41,7 @@ PERSON = {
     "address": {"@type": "PostalAddress", "streetAddress": "Georgshof 1", "postalCode": "51503", "addressLocality": "Rösrath", "addressCountry": "DE"},
     "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": n} for n in [
         "Physiotherapeut", "Manuelle Therapie", "Sportphysiotherapeut DOSB", "Instructor Kinesiologisches Taping",
-        "Ergonomie-Instructor", "Golf-Physio-Trainer"]],
+        "Ergonomie-Instructor", "Golf-Physio-Trainer", "PINO Headinstructor"]],
     "knowsAbout": ["Sportphysiotherapie", "Manuelle Therapie", "Return to Sport", "Kinesiologisches Taping",
                    "Dry Needling", "Flossing", "Blood Flow Restriction Training", "Funktionelles Training",
                    "Ergonomie", "Golf-Physiotherapie"],
