@@ -426,3 +426,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .flyer-big:hover { transform: rotate(0); }
 @media (max-width: 860px) { .flyer-grid { grid-template-columns: 1fr; } }
 .footer-inner nav { flex-wrap: wrap; gap: 8px 20px; }
+
+/* Referent: Qualifikationen und Lehrtätigkeit */
+.bio-head { margin: 2rem 0 .2rem; font-weight: 700; font-stretch: 75%; text-transform: uppercase; letter-spacing: .1em; font-size: .9rem; color: var(--tape-light); }
+.quals { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .6rem; }
+.quals li { padding: .4em .85em; border: 1px solid rgba(255,255,255,.35); font-weight: 600; font-stretch: 90%; font-size: .95rem; color: #fff; }
+.ref-teach { color: rgba(255,255,255,.72); margin: .5rem 0 .6rem; }
+.teach-list li { display: inline-block; margin: 0 6px 8px 0; padding: .35em .8em; background: var(--tape); color: #fff; font-weight: 700; font-stretch: 90%; font-size: .95rem; }
+.ref-short { font-weight: 600; font-stretch: 90%; color: var(--tape-light) !important; font-size: .95rem; }

@@ -31,8 +31,13 @@ PERSON = {
     "telephone": "+49 163 4439593",
     "image": f"{SITE_URL}/assets/img/thorsten-portrait.jpg",
     "url": f"{SITE_URL}/referent",
-    "knowsAbout": ["Sportphysiotherapie", "Return to Sport", "Kinesiologisches Taping",
-                   "Dry Needling", "Flossing", "Blood Flow Restriction Training", "Funktionelles Training"],
+    "address": {"@type": "PostalAddress", "addressLocality": "Köln", "addressCountry": "DE"},
+    "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": n} for n in [
+        "Physiotherapeut", "Manuelle Therapie", "Sportphysiotherapeut DOSB", "Instructor Kinesiologisches Taping",
+        "Ergonomie-Instructor", "Golf-Physio-Trainer"]],
+    "knowsAbout": ["Sportphysiotherapie", "Manuelle Therapie", "Return to Sport", "Kinesiologisches Taping",
+                   "Dry Needling", "Flossing", "Blood Flow Restriction Training", "Funktionelles Training",
+                   "Ergonomie", "Golf-Physiotherapie"],
 }
 
 COURSE = {
@@ -85,8 +90,8 @@ PAGES = {
     "referent": dict(
         path="/referent",
         title="Thorsten Büscher: DOSB-Sportphysiotherapeut aus Köln | Referent",
-        description=("Thorsten Büscher ist Physiotherapeut mit DOSB-Sportphysiotherapie-Qualifikation, war 5 Jahre am "
-                     "Olympiastützpunkt Köln und betreut Welt- und Europameister sowie Olympiasieger."),
+        description=("Thorsten Büscher: Physiotherapeut, Manuelle Therapie, Sportphysiotherapeut DOSB, Instructor für "
+                     "kinesiologisches Taping. 5 Jahre Olympiastützpunkt Köln, Referent u. a. an der r.o.m.b.u.s. Akademie."),
         og_image="/assets/img/thorsten-portrait.jpg",
         jsonld=[{"@type": "ProfilePage", "mainEntity": PERSON},
                 crumbs(("Startseite", "/"), ("Referent", "/referent"))],
