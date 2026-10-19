@@ -448,6 +448,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .refs-list li { display: flex; flex-direction: column; line-height: 1.05; }
 .refs-list b { font-weight: 900; font-stretch: 112%; font-size: clamp(1.15rem, 1.8vw, 1.5rem); letter-spacing: -.01em; color: var(--ink); }
 .refs-list span { font-weight: 600; font-stretch: 80%; font-size: .9rem; color: var(--ink-soft); }
+@media (min-width: 801px) and (max-width: 1100px) { .refs-list { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 16px 32px; } }
 @media (max-width: 800px) { .refs-inner { text-align: center; } .refs-list { justify-content: center; } .refs-list li { align-items: center; } }
 @media (max-width: 520px) { .refs-list { flex-direction: column; gap: 14px; } }
 
