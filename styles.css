@@ -541,3 +541,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .compare td:first-child { font-size: 1.15rem; margin-bottom: 6px; }
   .compare td[data-label]::before { content: attr(data-label) ": "; font-weight: 700; font-stretch: 75%; text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; color: var(--ink-soft); }
 }
+.course-media { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+.course-media img, .course-media video { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; background: var(--ink); }
+@media (max-width: 860px) { .course-side { max-width: 560px; } }
+
