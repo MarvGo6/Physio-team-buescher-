@@ -532,4 +532,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .flyer-more { margin-top: 1.2rem; line-height: 1.9; }
 .form select { width: 100%; font: inherit; font-stretch: 100%; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 1rem; color: var(--ink); padding: 12px 2px; border: 0; border-bottom: 2px solid rgba(11,20,38,.35); background: transparent; border-radius: 0; }
 .form select:focus { outline: none; border-color: var(--tape); }
-
+@media (max-width: 700px) {
+  .compare { min-width: 0; }
+  .compare thead { display: none; }
+  .compare, .compare tbody, .compare tr, .compare td { display: block; width: 100%; }
+  .compare tr { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .compare td { border: 0; padding: 3px 0; white-space: normal !important; }
+  .compare td:first-child { font-size: 1.15rem; margin-bottom: 6px; }
+  .compare td[data-label]::before { content: attr(data-label) ": "; font-weight: 700; font-stretch: 75%; text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; color: var(--ink-soft); }
+}
