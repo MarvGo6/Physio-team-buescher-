@@ -453,12 +453,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 520px) { .refs-list { flex-direction: column; gap: 14px; } }
 
 /* Stimmen: echte Rezension groß */
-.voice-main { max-width: 980px; margin-top: 36px; padding: clamp(26px, 4vw, 44px); background: var(--white); border-left: 6px solid var(--tape); display: block; }
+.voice-main { max-width: 1040px; margin-top: 36px; padding: clamp(26px, 4vw, 44px); background: var(--white); border-left: 6px solid var(--tape); display: block; }
 .voice-pull { font-weight: 850; font-stretch: 110%; font-size: clamp(1.35rem, 2.6vw, 2rem); line-height: 1.2; letter-spacing: -.01em; margin-bottom: 1.4rem; color: var(--ink); }
 .voice-main blockquote { margin: 0 0 1.4rem; columns: 2 320px; column-gap: 40px; }
-.voice-main blockquote p { font-size: 1.02rem; line-height: 1.6; color: var(--ink-soft); margin: 0 0 .9rem; break-inside: avoid; }
+.voice-main blockquote p { font-size: 1.02rem; line-height: 1.6; color: var(--ink-soft); margin: 0 0 .9rem; }
 .voice-main blockquote::before { display: none; }
 .voice-main figcaption b { font-size: 1.05rem; }
+.voice-kicker { margin: 0 0 .8rem; font-weight: 700; font-stretch: 75%; text-transform: uppercase; letter-spacing: .1em; font-size: .82rem; color: var(--tape-dark); }
+.voice-main + .voice-grid { margin-top: 28px; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .form-note.ok { color: #1b7a3a; font-weight: 600; }
 .form button[disabled] { opacity: .6; cursor: wait; }
