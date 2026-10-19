@@ -49,6 +49,14 @@
     });
   });
 
+  // "Kurs anfragen": Nachricht im Kontaktformular mit dem Kursnamen vorbelegen
+  document.querySelectorAll('a[data-kurs]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var msg = document.querySelector('#contact-form textarea[name="message"]');
+      if (msg && !msg.value.trim()) msg.value = 'Wir interessieren uns für den Kurs „' + a.dataset.kurs + '“.\n\nTermin, Ort und Teilnehmerzahl: ';
+    });
+  });
+
   // Kontaktformular: sendet die Anfrage direkt per E-Mail (Dienst FormSubmit).
   // Fällt der Dienst aus, öffnet sich als Ersatz das E-Mail-Programm mit vorausgefüllter Nachricht.
   var form = document.getElementById('contact-form');

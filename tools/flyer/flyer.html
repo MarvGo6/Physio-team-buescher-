@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Kursflyer</title>
+<!--
+  Vorlage für die Kursflyer (A4 quer, gleiche Aufteilung wie der Flyer "Sportphysiotherapie neu gedacht").
+  Aufruf: /tools/flyer/flyer.html?kurs=taping  bzw.  ?kurs=pinofit
+  Texte stehen unten im Objekt KURSE. Bilder und PDFs erzeugt tools/flyer/render.js.
+-->
+<style>
+@font-face { font-family: Archivo; src: url(../../assets/fonts/archivo-latin-standard-normal.woff2) format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+@font-face { font-family: Archivo; src: url(../../assets/fonts/archivo-latin-standard-italic.woff2) format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; font-style: italic; }
+@font-face { font-family: Marker; src: url(../../assets/fonts/permanent-marker-latin-400-normal.woff2) format("woff2"); }
+:root { --navy: #0b1426; --blue: #1a6dff; --blue-d: #0f55d6; --ice: #e9f1ff; --ice-2: #d6e5ff; --ink: #141c2e; --soft: #3d475c; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+@page { size: A4 landscape; margin: 0; }
+html, body { width: 1492px; height: 1054px; }
+body { font-family: Archivo, "Arial Narrow", sans-serif; color: var(--ink); background: #fff; display: flex; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+/* Linke Hälfte */
+.left { position: relative; width: 746px; height: 1054px; background: var(--navy); overflow: hidden; color: #fff; }
+.hero { position: absolute; left: 0; top: 0; width: 746px; height: 700px; background-size: cover; filter: saturate(.8) brightness(.85) contrast(1.05); }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,20,38,.05) 0%, rgba(11,20,38,.2) 28%, rgba(11,20,38,.82) 44%, var(--navy) 62%); }
+.glow { position: absolute; left: -120px; top: 330px; width: 600px; height: 300px; background: radial-gradient(closest-side, rgba(26,109,255,.35), transparent); }
+.script { position: absolute; right: 26px; top: 34px; transform: rotate(-9deg); font-family: Marker; font-size: 34px; line-height: 1.05; text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,.45); }
+.script i { display: block; height: 7px; margin: 10px auto 0; width: 70%; background: var(--blue); border-radius: 4px; transform: rotate(-3deg); }
+.title { position: absolute; left: 40px; right: 30px; top: var(--title-top, 420px); }
+.title h1 { font-weight: 900; font-stretch: var(--t1-stretch, 100%); font-size: var(--t1-size, 74px); line-height: .95; letter-spacing: -.01em; }
+.title h1 em { display: block; color: var(--blue); font-style: italic; font-size: var(--t2-size, 96px); font-stretch: 100%; margin-top: 6px; }
+.title p { margin-top: 18px; font-size: var(--sub-size, 27px); font-weight: 400; font-stretch: 90%; letter-spacing: .1em; text-transform: uppercase; font-style: italic; }
+.icons { position: absolute; left: 22px; right: 22px; top: 640px; display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; }
+.icons .c { width: 76px; height: 76px; margin: 0 auto 12px; border: 2.5px solid #fff; border-radius: 50%; display: grid; place-items: center; }
+.icons svg { width: 40px; height: 40px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.icons b { display: block; color: var(--blue); font-weight: 800; font-stretch: 90%; font-size: 22px; letter-spacing: .01em; }
+.icons span { display: block; font-size: 15px; font-style: italic; line-height: 1.25; margin-top: 3px; }
+.brush { position: absolute; left: -14px; top: 812px; width: 640px; height: 118px; transform: rotate(-3deg); z-index: 3; }
+.brush svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.brush p { position: relative; padding: 22px 30px 0 54px; font-size: 22px; font-weight: 600; line-height: 1.3; }
+.strip { position: absolute; left: 0; right: 0; bottom: 0; height: 200px; }
+.strip div { position: absolute; top: 0; bottom: 0; background-size: cover; background-position: center; filter: grayscale(1) contrast(1.1) brightness(.75); }
+.strip div:nth-child(1) { left: 0; width: 290px; clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%); }
+.strip div:nth-child(2) { left: 252px; width: 280px; clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%); }
+.strip div:nth-child(3) { left: 494px; width: 252px; clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); }
+.strip::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--navy) 0%, rgba(11,20,38,.1) 45%, rgba(26,109,255,.18) 100%); }
+
+/* Rechte Hälfte */
+.right { position: relative; width: 746px; height: 1054px; padding: 30px 34px 0 36px; overflow: hidden; }
+.badge { position: absolute; right: -8px; top: 14px; width: 220px; height: 128px; transform: rotate(-8deg); }
+.badge svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.badge p { position: relative; color: #fff; font-family: Marker; font-size: 21px; line-height: 1.12; padding: 22px 18px 0 30px; }
+.head h2 { font-weight: 800; font-stretch: 85%; font-size: var(--h2-size, 40px); line-height: 1.02; color: var(--navy); letter-spacing: -.01em; max-width: 470px; }
+.head h2 span { color: var(--blue); }
+.head .sub { margin-top: 6px; font-size: 16px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--navy); max-width: 470px; }
+.head .intro { margin-top: 10px; font-size: 14px; line-height: 1.42; color: var(--soft); max-width: 470px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.meta span { background: var(--navy); color: #fff; font-size: 13px; font-weight: 700; font-stretch: 90%; padding: 5px 11px; border-radius: 3px; }
+.meta span.b { background: var(--blue); }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; margin-top: 16px; }
+.box-h { background: var(--ice); color: var(--blue-d); font-weight: 800; font-stretch: 85%; font-size: 17px; letter-spacing: .02em; text-transform: uppercase; padding: 7px 12px; border-radius: 3px; }
+.steps { list-style: none; margin-top: 10px; }
+.steps > li { position: relative; padding-left: 46px; margin-bottom: 9px; }
+.steps .n { position: absolute; left: 2px; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 800; font-size: 18px; display: grid; place-items: center; }
+.steps h3 { font-size: 15.5px; font-weight: 800; font-stretch: 85%; color: var(--navy); line-height: 1.2; padding-top: 6px; }
+.steps h3 span { color: var(--blue); }
+.dots { list-style: none; margin-top: 4px; }
+.dots li { position: relative; padding-left: 13px; font-size: var(--dots, 12.2px); line-height: 1.36; color: var(--soft); }
+.dots li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 4px; height: 4px; border-radius: 50%; background: var(--navy); }
+.extra { margin-top: 4px; }
+.extra .dots { margin: 8px 0 0 4px; }
+.special { background: var(--ice); border-radius: 4px; padding: 0 0 10px; }
+.special .box-h { background: var(--ice-2); }
+.checks { list-style: none; padding: 8px 12px 0; }
+.checks li { position: relative; padding-left: 28px; font-size: 12.8px; line-height: 1.3; margin-bottom: 6px; color: var(--ink); }
+.checks li::before { content: ""; position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 6.5' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat; }
+.photo { height: var(--photo-h, 128px); margin-top: 12px; background-size: cover; border-radius: 3px; }
+.target { margin-top: 12px; }
+.target p { font-size: 12.5px; line-height: 1.4; color: var(--soft); margin-top: 6px; padding: 0 2px; }
+.info { display: flex; gap: 12px; margin-top: 12px; padding: 11px 12px; border: 1.5px solid var(--ice-2); background: #f6f9ff; border-radius: 4px; }
+.info svg { flex: none; width: 34px; height: 34px; fill: none; stroke: var(--blue); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.info b { display: block; color: var(--blue-d); font-weight: 800; font-stretch: 85%; font-size: 14px; text-transform: uppercase; }
+.info p { font-size: 12.3px; line-height: 1.38; color: var(--soft); margin-top: 2px; }
+.foot { position: absolute; left: 36px; right: 0; bottom: 0; height: 212px; border-top: 1.5px solid var(--ice-2); display: grid; grid-template-columns: 172px 1fr 236px; gap: 0 18px; padding-top: 18px; }
+.foot .face { width: 160px; height: 160px; border-radius: 50%; border: 5px solid var(--blue); background-size: cover; background-position: center 30%; margin-top: 8px; }
+.foot .ref b.k { color: var(--blue); font-weight: 800; font-stretch: 85%; font-size: 15px; text-transform: uppercase; }
+.foot .ref h4 { font-size: 21px; font-weight: 800; font-stretch: 85%; color: var(--navy); margin-bottom: 6px; }
+.foot .ref .dots li { font-size: 12.3px; line-height: 1.36; }
+.contact { background: var(--ice); padding: 20px 18px; margin-top: -18px; height: calc(100% + 18px); }
+.contact h4 { color: var(--blue-d); font-weight: 800; font-stretch: 85%; font-size: 19px; line-height: 1.12; padding-bottom: 10px; border-bottom: 2px solid var(--blue); margin-bottom: 12px; }
+.contact p { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-bottom: 10px; color: var(--ink); white-space: nowrap; }
+.contact svg { flex: none; width: 19px; height: 19px; fill: none; stroke: var(--blue-d); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<div class="left">
+  <div class="hero" id="hero"></div>
+  <div class="glow"></div>
+  <div class="shade"></div>
+  <div class="script" id="script"></div>
+  <div class="title"><h1 id="t1"></h1><p id="tsub"></p></div>
+  <div class="icons" id="icons"></div>
+  <div class="strip" id="strip"><div></div><div></div><div></div></div>
+  <div class="brush"><svg viewBox="0 0 640 118" preserveAspectRatio="none"><path id="brushpath" fill="#1a6dff"/></svg><p id="brushtext"></p></div>
+</div>
+<div class="right">
+  <div class="badge"><svg viewBox="0 0 220 128" preserveAspectRatio="none"><path id="badgepath" fill="#1a6dff"/></svg><p id="badge"></p></div>
+  <div class="head"><h2 id="h2"></h2><p class="sub" id="sub"></p><p class="intro" id="intro"></p><div class="meta" id="meta"></div></div>
+  <div class="cols">
+    <div><div class="box-h">Kursinhalte</div><ol class="steps" id="steps"></ol><div class="extra" id="extra"></div></div>
+    <div>
+      <div class="special"><div class="box-h">Das Besondere an diesem Kurs</div><ul class="checks" id="checks"></ul></div>
+      <div class="photo" id="photo"></div>
+      <div class="target"><div class="box-h">Zielgruppe</div><p id="target"></p></div>
+      <div class="info"><svg viewBox="0 0 32 32"><path d="M16 4a8 8 0 0 0-4.6 14.6c.9.7 1.6 1.8 1.6 3v.4h6v-.4c0-1.2.7-2.3 1.6-3A8 8 0 0 0 16 4z"/><path d="M13 25h6M14 28h4M16 1v1M4 12H3M29 12h-1M7.5 3.5l.7.7M24.5 3.5l-.7.7"/></svg><div><b id="infoh"></b><p id="infot"></p></div></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="face" style="background-image:url(../../assets/img/thorsten-face.jpg)"></div>
+    <div class="ref"><b class="k">Referent</b><h4>Thorsten Büscher</h4><ul class="dots">
+      <li>Physiotherapeut / Manuelle Therapie</li>
+      <li>Sportphysiotherapeut DOSB</li>
+      <li>PINO Head Instructor</li>
+      <li>Ergonomie-Instructor · Golf-Physio-Trainer</li>
+      <li>5 Jahre am Olympiastützpunkt Köln</li>
+      <li>Betreuung von Welt- und Europameistern und Olympiasiegern</li>
+    </ul></div>
+    <div class="contact"><h4>Für Terminabsprachen und Rückfragen</h4>
+      <p><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Thorsten Büscher</p>
+      <p><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>0163 44 39 593</p>
+      <p><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>kontakt@physio-buescher.de</p>
+      <p><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z"/></svg>physio-buescher.de</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const IMG = '../../assets/img/';
+const ICON = {
+  search: '<circle cx="17" cy="17" r="10"/><path d="M24.5 24.5L34 34"/>',
+  choose: '<path d="M8 10h6M8 20h6M8 30h6"/><path d="M19 10h13M19 20h13M19 30h13"/>',
+  tape: '<circle cx="15" cy="17" r="10"/><circle cx="15" cy="17" r="4"/><path d="M15 27h19v-6"/>',
+  combine: '<circle cx="14" cy="20" r="9"/><circle cx="26" cy="20" r="9"/>',
+  hand: '<path d="M13 21V9a2 2 0 0 1 4 0v10M17 18V6a2 2 0 0 1 4 0v12M21 18V8a2 2 0 0 1 4 0v12M25 19v-6a2 2 0 0 1 4 0v9c0 7-4 12-11 12-4 0-6-2-8-5l-4-7a2 2 0 0 1 3.4-2L13 23"/>',
+  bandage: '<path d="M14 4v10c0 3-2 5-2 9v13M26 4v10c0 3 2 5 2 9v13"/><path d="M11 15l18 4M11 21l18 4M12 27l17 3"/>',
+  gauge: '<path d="M6 28a14 14 0 1 1 28 0"/><path d="M20 28l7-9"/><circle cx="20" cy="28" r="2"/><path d="M10 28h2M28 28h2M20 14v2"/>',
+  floss: '<path d="M8 8c8 0 16 4 24 4M8 16c8 0 16 4 24 4M8 24c8 0 16 4 24 4M8 32c8 0 16-2 24-2"/>',
+  three: '<circle cx="20" cy="13" r="7.5"/><circle cx="13" cy="25" r="7.5"/><circle cx="27" cy="25" r="7.5"/>',
+  dumbbell: '<path d="M10 14v12M30 14v12M6 17v6M34 17v6M10 20h20"/>'
+};
+const KURSE = {
+  taping: {
+    title: 'Kinesio-Taping: Grundtechniken &amp; Anwendung',
+    hero: 'tape-gesicht.jpg', heroPos: 'center 0%', dots: '12.9px',
+    script: 'Funktionell<br>statt<br>schematisch.',
+    t1: 'Kinesio-Taping<em>kompakt</em>', t1size: '80px', t2size: '104px', titleTop: '362px',
+    tsub: 'Grundtechniken &amp; Anwendung', subsize: '27px',
+    icons: [['search', 'Befund', 'Funktionell<br>untersuchen'], ['choose', 'Auswahl', 'Passende<br>Anlage wählen'], ['tape', 'Anlage', 'Technik sicher<br>ausführen'], ['combine', 'Kombi', 'Mit Therapie<br>verbinden'], ['hand', 'Praxis', 'Direkt<br>anwenden']],
+    brush: 'Ein praxisorientierter Tageskurs: Taping verstehen,<br>gezielt auswählen und sicher anlegen.',
+    strip: ['tape-deutschland.jpg', 'thorsten-kurs.jpg', 'tape-deutschland-2.jpg'],
+    badge: 'Funktionell.<br>Praxisnah.<br>Umsetzbar.',
+    h2: 'Kinesio-Taping <span>kompakt</span>',
+    sub: 'Grundtechniken &amp; Anwendung',
+    intro: 'Eintägiger PINO-Kompaktkurs: Kinesiologisches Taping aus funktionell-anatomischer, biomechanischer und orthopädischer Sicht, verbunden mit manueller Therapie, Sportphysiotherapie und myofaszialer Therapie.',
+    meta: [['1 Tag', ''], ['ca. 9–18 Uhr', ''], ['10 Unterrichtseinheiten', 'b'], ['Tape &amp; Unterlagen inklusive', '']],
+    steps: [
+      ['Grundlagen', 'Wirkung &amp; Material', ['Aktuelle Theorien zur Wirkungsweise', 'Materialkunde und Grundtechniken']],
+      ['Befund', 'Funktionell untersuchen', ['Funktionelle Befunderhebung', 'Anlage nach Befund und Therapieziel wählen']],
+      ['Technik', 'Gezielt anlegen', ['Muskel-, Ligament-, Korrektur- und Entlastungstechniken', 'Kombination mit manueller und aktiver Therapie']],
+      ['Praxis', 'Üben am Fall', ['Demonstrieren, dann gegenseitig üben', 'Praktische Übungen und Fallbeispiele']]
+    ],
+    extraH: 'Anwendungsbeispiele',
+    extra: ['HWS, BWS, LWS und ISG', 'Schulter und Impingement', 'Knie und patellofemorales Schmerzsyndrom', 'Sprunggelenk und funktionelle Instabilität', 'Tendinopathien: Patella, Achilles, Epicondylen', 'Arthrose, Überlastung und Lymphologie'],
+    checks: ['Kompaktes Tagesformat', 'Hoher praktischer Übungsanteil', 'Funktionell statt schematisch', 'Breites Spektrum typischer Indikationen', 'Direkt in der Praxis einsetzbar', 'Tapematerial und Kursunterlagen inklusive'],
+    photo: 'kurs-taping-saarbruecken.jpg', photoPos: 'center 62%', photoH: '118px',
+    target: 'Physiotherapeut:innen, Masseur:innen und med. Bademeister:innen, Ergotherapeut:innen, Heilpraktiker:innen, Ärzt:innen sowie angrenzende Berufsgruppen.',
+    infoH: 'Materialpartner PINO',
+    info: 'Das Tape-Material wird gestellt. Für Akademien organisatorisch unkompliziert und sofort durchführbar.'
+  },
+  pinofit: {
+    title: 'Bandagen, Flossing &amp; BFR – PINOFIT Kombikurs',
+    hero: 'thorsten-dreh.jpg', heroPos: 'center 20%',
+    script: 'Drei Tools.<br>Ein Konzept.',
+    t1: 'Bandagen,<br>Flossing<em>&amp; BFR</em>', t1size: '78px', t2size: '100px', titleTop: '300px',
+    tsub: 'PINOFIT Kombikurs', subsize: '28px',
+    icons: [['bandage', 'Bandagen', 'Stabilisieren<br>und führen'], ['gauge', 'BFR', 'Reize bei<br>wenig Last'], ['floss', 'Flossing', 'Mobilisieren mit<br>Kompression'], ['three', 'Kombi', 'Strategisch<br>verknüpfen'], ['dumbbell', 'Transfer', 'Therapie, Reha,<br>Training']],
+    brush: 'Ein praxisorientierter Tageskurs für Therapie,<br>Rehabilitation, Training und Prävention.',
+    strip: ['return-to-sport-poster.jpg', 'thorsten-kurs.jpg', 'tape-deutschland.jpg'],
+    badge: 'Drei Methoden.<br>Ein Tag.<br>Viel Praxis.',
+    h2: 'Bandagen, Flossing &amp; BFR <span>PINOFIT Kombikurs</span>', h2size: '38px',
+    sub: 'Therapie · Rehabilitation · Training',
+    intro: 'Der Tageskurs verbindet PINOFIT Bandagen, Blood Flow Restriction Training (BFR) und Flossing zu einem Behandlungskonzept: Techniken sicher erlernen und sinnvoll in der täglichen Praxis verknüpfen.',
+    meta: [['1 Tag', ''], ['ca. 9–17 Uhr', ''], ['Material von PINO', 'b']],
+    steps: [
+      ['Bandagen', 'PINOFIT', ['Funktionelle Bandagentechniken', 'Gelenke und typische Beschwerdebilder', 'Kombination mit kinesiologischen Tapes']],
+      ['BFR', 'Blood Flow Restriction', ['Grundlagen und Wirkmechanismen', 'Praktische Durchführung und Dosierung', 'Sicherheit, Indikationen, Kontraindikationen']],
+      ['Flossing', 'Kompression &amp; Bewegung', ['Grundlagen des Flossings', 'Techniken für obere und untere Extremität', 'Kombination mit aktiver Bewegungstherapie']],
+      ['Transfer', 'Strategisch verknüpfen', ['Bandagen, BFR und Flossing kombinieren', 'Fallbeispiele aus Therapie und Sportreha', 'Umfangreiche praktische Übungsphasen']]
+    ],
+    extraH: 'Ziel des Kurses',
+    extraText: 'Die Methoden sicher, differenziert und sofort einsetzen und je nach Therapieziel und Belastbarkeit sinnvoll kombinieren.',
+    checks: ['Drei aktuelle Methoden in einem Tageskurs', 'Hoher Praxisanteil mit den Materialien', 'Direkt in Therapie und Training umsetzbar', 'Für Rehabilitation, Sport und Prävention', 'Kombination mit aktiver Bewegungstherapie', 'Umfangreiche Kursunterlagen inklusive'],
+    photo: 'return-to-sport-poster.jpg', photoPos: 'center 62%', photoH: '104px',
+    target: 'Physiotherapeut:innen (auch in Ausbildung), Masseur:innen, med. Bademeister:innen, Sportwissenschaftler:innen, Personal- und Fitnesstrainer:innen, Heilpraktiker:innen, Ärzt:innen und angrenzende Berufsgruppen.',
+    infoH: 'Vorteil für die Akademie',
+    info: 'Die Kursmaterialien stellt PINO. Für die Akademie entsteht kein zusätzlicher Aufwand für die Beschaffung.'
+  }
+};
+
+// Pinselstrich mit unregelmäßigen Rändern (fester Startwert, sieht bei jedem Aufruf gleich aus)
+function brushPath(w, h, seed) {
+  let s = seed; const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  const top = [], bot = [], n = 28;
+  for (let i = 0; i <= n; i++) {
+    const x = (w * i) / n;
+    top.push([x + rnd() * 6, h * 0.12 + rnd() * h * 0.1]);
+    bot.push([x + rnd() * 6, h * 0.86 - rnd() * h * 0.1]);
+  }
+  const left = [[w * 0.04, h * 0.3], [0, h * 0.5], [w * 0.05, h * 0.62], [w * 0.01, h * 0.8]];
+  const right = [[w - 4, h * 0.2], [w - 18, h * 0.38], [w, h * 0.5], [w - 26, h * 0.66], [w - 8, h * 0.84]];
+  const pts = [...left.slice().reverse().slice(0, 1), ...top, ...right, ...bot.reverse(), ...left.slice(1)];
+  return 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L') + 'Z';
+}
+
+const k = KURSE[new URLSearchParams(location.search).get('kurs') || 'taping'];
+const $ = id => document.getElementById(id);
+document.title = 'Flyer: ' + k.title.replace('&amp;', '&');
+const root = document.documentElement.style;
+root.setProperty('--t1-size', k.t1size); root.setProperty('--t2-size', k.t2size); root.setProperty('--sub-size', k.subsize);
+if (k.titleTop) root.setProperty('--title-top', k.titleTop);
+if (k.h2size) root.setProperty('--h2-size', k.h2size);
+root.setProperty('--photo-h', k.photoH);
+if (k.dots) root.setProperty('--dots', k.dots);
+$('hero').style.backgroundImage = `url(${IMG + k.hero})`; $('hero').style.backgroundPosition = k.heroPos;
+$('script').innerHTML = k.script + '<i></i>';
+$('t1').innerHTML = k.t1; $('tsub').innerHTML = k.tsub;
+$('icons').innerHTML = k.icons.map(([ic, b, s]) => `<div><div class="c"><svg viewBox="0 0 40 40">${ICON[ic]}</svg></div><b>${b}</b><span>${s}</span></div>`).join('');
+$('brushpath').setAttribute('d', brushPath(640, 118, 7)); $('brushtext').innerHTML = k.brush;
+[...$('strip').children].forEach((d, i) => d.style.backgroundImage = `url(${IMG + k.strip[i]})`);
+$('badgepath').setAttribute('d', brushPath(220, 128, 3)); $('badge').innerHTML = k.badge;
+$('h2').innerHTML = k.h2; $('sub').innerHTML = k.sub; $('intro').innerHTML = k.intro;
+$('meta').innerHTML = k.meta.map(([t, c]) => `<span class="${c}">${t}</span>`).join('');
+$('steps').innerHTML = k.steps.map(([a, b, items], i) => `<li><span class="n">${i + 1}</span><h3><span>${a} –</span> ${b}</h3><ul class="dots">${items.map(t => `<li>${t}</li>`).join('')}</ul></li>`).join('');
+$('extra').innerHTML = `<div class="box-h">${k.extraH}</div>` + (k.extra ? `<ul class="dots">${k.extra.map(t => `<li>${t}</li>`).join('')}</ul>` : `<p class="extra-p">${k.extraText}</p>`);
+$('checks').innerHTML = k.checks.map(t => `<li>${t}</li>`).join('');
+$('photo').style.backgroundImage = `url(${IMG + k.photo})`; $('photo').style.backgroundPosition = k.photoPos;
+$('target').innerHTML = k.target; $('infoh').innerHTML = k.infoH; $('infot').innerHTML = k.info;
+</script>
+<style>.extra-p { font-size: 12.8px; line-height: 1.42; color: var(--soft); margin: 8px 2px 0; }</style>
+</body>
+</html>

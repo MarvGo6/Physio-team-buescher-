@@ -18,6 +18,11 @@ von Thorsten Büscher, ausgerichtet auf Fortbildungsschulen und Akademien.
   Patient:innen/Teilnehmenden und Bildrechte (z. B. Screenshots aus Videos von PINO).
 - Flyer als PDF bereitstellen (`assets/`) und Download-Link in `index.html` anpassen.
 
+## Kursflyer
+- Vorlage: `tools/flyer/flyer.html` (Texte im Objekt `KURSE`, Aufruf `?kurs=taping` bzw. `?kurs=pinofit`).
+- Bilder und Druck-PDFs neu erzeugen: lokalen Server im Projektordner auf Port 8766 starten, dann `node tools/flyer/render.js`
+  (braucht Playwright). Ergebnis: `assets/flyer-*.jpg` und `assets/flyer-*.pdf`; Vorschaubilder für die Seite liegen in `assets/img/flyer-*-web.jpg`.
+
 ## Hosting
 - Läuft auf Vercel (`vercel.json`) und genauso auf Cloudflare Pages (`_headers`; Build-Befehl leer lassen,
   Ausgabeordner `/`). Saubere URLs wie `/inhalte` funktionieren auf beiden ohne Zusatzkonfiguration.

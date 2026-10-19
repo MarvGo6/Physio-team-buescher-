@@ -71,7 +71,33 @@ COURSE = {
                           "location": {"@type": "Place", "name": "Bei der ausrichtenden Akademie, in Deutschland und international"}},
 }
 
-NAV = [("/inhalte", "Inhalte", "inhalte"), ("/referent", "Referent", "referent"), ("/akademien", "Für Akademien", "akademien")]
+COURSE_TAPING = {
+    "@type": "Course",
+    "@id": f"{SITE_URL}/kurse#kinesio-taping",
+    "name": "Kinesio-Taping kompakt: Grundtechniken und Anwendungsmöglichkeiten",
+    "description": ("Eintägiger PINO-Kompaktkurs mit 10 Unterrichtseinheiten: kinesiologisches Taping aus funktionell-anatomischer, "
+                    "biomechanischer und orthopädischer Sicht, mit hohem Praxisanteil."),
+    "inLanguage": "de",
+    "url": f"{SITE_URL}/kurse#kinesio-taping",
+    "provider": {"@id": f"{SITE_URL}/referent#person"},
+    "instructor": {"@id": f"{SITE_URL}/referent#person"},
+    "timeRequired": "P1D",
+}
+
+COURSE_PINOFIT = {
+    "@type": "Course",
+    "@id": f"{SITE_URL}/kurse#pinofit",
+    "name": "Bandagen, Flossing und BFR: PINOFIT Kombikurs",
+    "description": ("Tageskurs, der PINOFIT Bandagen, Blood Flow Restriction Training und Flossing zu einem Konzept für "
+                    "Therapie, Rehabilitation, Training und Prävention verbindet."),
+    "inLanguage": "de",
+    "url": f"{SITE_URL}/kurse#pinofit",
+    "provider": {"@id": f"{SITE_URL}/referent#person"},
+    "instructor": {"@id": f"{SITE_URL}/referent#person"},
+    "timeRequired": "P1D",
+}
+
+NAV = [("/kurse", "Kurse", ("kurse", "inhalte")), ("/referent", "Referent", ("referent",)), ("/akademien", "Für Akademien", ("akademien",))]
 
 
 def crumbs(*items):
@@ -110,6 +136,17 @@ PAGES = {
         jsonld=[{"@type": "ProfilePage", "mainEntity": PERSON},
                 crumbs(("Startseite", "/"), ("Referent", "/referent"))],
         priority="0.8",
+    ),
+    "kurse": dict(
+        path="/kurse",
+        title="Kurse: Sportphysiotherapie, Kinesio-Taping, Bandagen, Flossing & BFR | Thorsten Büscher",
+        description=("Drei Fortbildungen mit Referent Thorsten Büscher: Sportphysiotherapie neu gedacht (2 Tage), "
+                     "Kinesio-Taping kompakt (1 Tag, 10 UE) und Bandagen, Flossing & BFR (PINOFIT Kombikurs, 1 Tag)."),
+        og_image="/assets/img/flyer-kinesio-taping-kompakt-web.jpg",
+        jsonld=[{"@type": "ItemList", "itemListElement": [
+                    {"@type": "ListItem", "position": i + 1, "item": c} for i, c in enumerate([COURSE, COURSE_TAPING, COURSE_PINOFIT])]},
+                crumbs(("Startseite", "/"), ("Kurse", "/kurse"))],
+        priority="0.9",
     ),
     "akademien": dict(
         path="/akademien",
@@ -176,7 +213,7 @@ LAYOUT = """<!doctype html>
     <div class="wrap footer-inner">
       <p class="marker">Therapie trifft Training.</p>
       <p>© <span id="year">{year}</span> Thorsten Büscher</p>
-      <nav aria-label="Weitere Seiten"><a href="/inhalte">Inhalte</a><a href="/referent">Referent</a><a href="/akademien">Für Akademien</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></nav>
+      <nav aria-label="Weitere Seiten"><a href="/kurse">Kurse</a><a href="/inhalte">Inhalte</a><a href="/referent">Referent</a><a href="/akademien">Für Akademien</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></nav>
     </div>
   </footer>
 
@@ -198,8 +235,8 @@ def build():
         body = include((SRC / "pages" / f"{name}.html").read_text())
         has_contact = 'id="kontakt"' in body
         nav = "\n".join(
-            f'          <li><a href="{href}"{" aria-current=\"page\"" if key == name else ""}>{label}</a></li>'
-            for href, label, key in NAV)
+            f'          <li><a href="{href}"{" aria-current=\"page\"" if name in keys else ""}>{label}</a></li>'
+            for href, label, keys in NAV)
         canonical = SITE_URL + p["path"]
         blocks = ""
         if p.get("jsonld"):
