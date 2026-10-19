@@ -108,13 +108,13 @@ def crumbs(*items):
 PAGES = {
     "index": dict(
         path="/",
-        title="Sportphysiotherapie-Fortbildung: neu gedacht | Thorsten Büscher",
-        description=("Zwei Tage Sportphysiotherapie für Physiotherapeut:innen: vom ersten Befund bis zur Rückkehr in "
-                     "den Wettkampf. Assess, Treat, Train, Return, Perform. Referent: Thorsten Büscher, "
-                     "DOSB-Sportphysiotherapeut, 5 Jahre Olympiastützpunkt Köln. Kurse in Deutschland und international."),
+        title="Fortbildungen Sportphysiotherapie, Kinesio-Taping & BFR | Thorsten Büscher",
+        description=("Drei Fortbildungen mit Thorsten Büscher, DOSB-Sportphysiotherapeut und 5 Jahre Olympiastützpunkt Köln: "
+                     "Sportphysiotherapie neu gedacht (2 Tage), Kinesio-Taping kompakt und Bandagen, Flossing & BFR (je 1 Tag). "
+                     "Kurse in Deutschland und international."),
         og_image="/assets/og-image.jpg",
         jsonld=[{"@type": "WebSite", "name": "Sportphysiotherapie neu gedacht", "url": f"{SITE_URL}/", "inLanguage": "de"},
-                COURSE, PERSON],
+                COURSE, COURSE_TAPING, COURSE_PINOFIT, PERSON],
         priority="1.0",
     ),
     "inhalte": dict(
@@ -150,11 +150,12 @@ PAGES = {
     ),
     "akademien": dict(
         path="/akademien",
-        title="Sportphysiotherapie-Fortbildung für Akademien und Fortbildungsschulen",
-        description=("Fertiges 2-Tages-Kurskonzept für Ihr Fortbildungsprogramm: Sportphysiotherapie von der Verletzung "
-                     "zur Performance, mit Referent Thorsten Büscher. In Ihren Räumen, in Deutschland und international. Termin und Rahmen nach Absprache."),
+        title="Drei Fortbildungen für Akademien und Fortbildungsschulen | Thorsten Büscher",
+        description=("Drei fertige Kurskonzepte für Ihr Fortbildungsprogramm: Sportphysiotherapie neu gedacht (2 Tage), "
+                     "Kinesio-Taping kompakt und Bandagen, Flossing & BFR (je 1 Tag). Referent Thorsten Büscher, in Ihren Räumen, "
+                     "in Deutschland und international."),
         og_image="/assets/og-image.jpg",
-        jsonld=[COURSE, crumbs(("Startseite", "/"), ("Für Akademien", "/akademien"))],
+        jsonld=[COURSE, COURSE_TAPING, COURSE_PINOFIT, crumbs(("Startseite", "/"), ("Für Akademien", "/akademien"))],
         priority="0.9",
     ),
     "impressum": dict(path="/impressum", title="Impressum | Thorsten Büscher Sportphysiotherapie",

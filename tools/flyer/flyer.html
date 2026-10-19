@@ -22,7 +22,7 @@ body { font-family: Archivo, "Arial Narrow", sans-serif; color: var(--ink); back
 /* Linke Hälfte */
 .left { position: relative; width: 746px; height: 1054px; background: var(--navy); overflow: hidden; color: #fff; }
 .hero { position: absolute; left: 0; top: 0; width: 746px; height: 700px; background-size: cover; filter: saturate(.8) brightness(.85) contrast(1.05); }
-.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,20,38,.05) 0%, rgba(11,20,38,.2) 28%, rgba(11,20,38,.82) 44%, var(--navy) 62%); }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,20,38,.05) 0%, rgba(11,20,38,.2) var(--s1, 28%), rgba(11,20,38,.82) var(--s2, 44%), var(--navy) var(--s3, 62%)); }
 .glow { position: absolute; left: -120px; top: 330px; width: 600px; height: 300px; background: radial-gradient(closest-side, rgba(26,109,255,.35), transparent); }
 .script { position: absolute; right: 26px; top: 34px; transform: rotate(-9deg); font-family: Marker; font-size: 34px; line-height: 1.05; text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,.45); }
 .script i { display: block; height: 7px; margin: 10px auto 0; width: 70%; background: var(--blue); border-radius: 4px; transform: rotate(-3deg); }
@@ -151,13 +151,13 @@ const ICON = {
 const KURSE = {
   taping: {
     title: 'Kinesio-Taping: Grundtechniken &amp; Anwendung',
-    hero: 'tape-gesicht.jpg', heroPos: 'center 0%', dots: '12.9px',
+    hero: 'kurs-taping-saarbruecken.jpg', heroPos: 'center -250px', dots: '12.9px', shade: ['36%', '52%', '64%'],
     script: 'Funktionell<br>statt<br>schematisch.',
-    t1: 'Kinesio-Taping<em>kompakt</em>', t1size: '80px', t2size: '104px', titleTop: '362px',
+    t1: 'Kinesio-Taping<em>kompakt</em>', t1size: '72px', t2size: '94px', titleTop: '418px',
     tsub: 'Grundtechniken &amp; Anwendung', subsize: '27px',
     icons: [['search', 'Befund', 'Funktionell<br>untersuchen'], ['choose', 'Auswahl', 'Passende<br>Anlage wählen'], ['tape', 'Anlage', 'Technik sicher<br>ausführen'], ['combine', 'Kombi', 'Mit Therapie<br>verbinden'], ['hand', 'Praxis', 'Direkt<br>anwenden']],
     brush: 'Ein praxisorientierter Tageskurs: Taping verstehen,<br>gezielt auswählen und sicher anlegen.',
-    strip: ['tape-deutschland.jpg', 'thorsten-kurs.jpg', 'tape-deutschland-2.jpg'],
+    strip: ['tape-gesicht.jpg', 'thorsten-kurs.jpg', 'tape-deutschland-2.jpg'],
     badge: 'Funktionell.<br>Praxisnah.<br>Umsetzbar.',
     h2: 'Kinesio-Taping <span>kompakt</span>',
     sub: 'Grundtechniken &amp; Anwendung',
@@ -172,7 +172,7 @@ const KURSE = {
     extraH: 'Anwendungsbeispiele',
     extra: ['HWS, BWS, LWS und ISG', 'Schulter und Impingement', 'Knie und patellofemorales Schmerzsyndrom', 'Sprunggelenk und funktionelle Instabilität', 'Tendinopathien: Patella, Achilles, Epicondylen', 'Arthrose, Überlastung und Lymphologie'],
     checks: ['Kompaktes Tagesformat', 'Hoher praktischer Übungsanteil', 'Funktionell statt schematisch', 'Breites Spektrum typischer Indikationen', 'Direkt in der Praxis einsetzbar', 'Tapematerial und Kursunterlagen inklusive'],
-    photo: 'kurs-taping-saarbruecken.jpg', photoPos: 'center 62%', photoH: '118px',
+    photo: 'tape-deutschland.jpg', photoPos: 'center 52%', photoH: '118px',
     target: 'Physiotherapeut:innen, Masseur:innen und med. Bademeister:innen, Ergotherapeut:innen, Heilpraktiker:innen, Ärzt:innen sowie angrenzende Berufsgruppen.',
     infoH: 'Materialpartner PINO',
     info: 'Das Tape-Material wird gestellt. Für Akademien organisatorisch unkompliziert und sofort durchführbar.'
@@ -231,6 +231,7 @@ if (k.titleTop) root.setProperty('--title-top', k.titleTop);
 if (k.h2size) root.setProperty('--h2-size', k.h2size);
 root.setProperty('--photo-h', k.photoH);
 if (k.dots) root.setProperty('--dots', k.dots);
+if (k.shade) k.shade.forEach((v, i) => root.setProperty('--s' + (i + 1), v));
 $('hero').style.backgroundImage = `url(${IMG + k.hero})`; $('hero').style.backgroundPosition = k.heroPos;
 $('script').innerHTML = k.script + '<i></i>';
 $('t1').innerHTML = k.t1; $('tsub').innerHTML = k.tsub;

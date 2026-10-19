@@ -26,7 +26,16 @@
             <label>E-Mail*<input name="email" type="email" autocomplete="email" required></label>
             <label>Telefon<input name="phone" type="tel" autocomplete="tel"></label>
           </div>
-          <label>Zeitraum und Ort<input name="when" placeholder="z. B. März 2027, Wien"></label>
+          <div class="row">
+            <label>Kurs<select name="kurs">
+              <option value="">Bitte wählen</option>
+              <option>Sportphysiotherapie neu gedacht</option>
+              <option>Kinesio-Taping kompakt</option>
+              <option>Bandagen, Flossing &amp; BFR</option>
+              <option>Mehrere Kurse oder Inhouse</option>
+            </select></label>
+            <label>Zeitraum und Ort<input name="when" placeholder="z. B. März 2027, Wien"></label>
+          </div>
           <label>Nachricht*<textarea name="message" rows="5" required placeholder="Teilnehmerzahl, Rahmen, Fragen"></textarea></label>
           <label class="consent"><input type="checkbox" name="consent" required> <span>Meine Angaben dürfen zur Bearbeitung der Anfrage verwendet werden (<a href="/datenschutz">Datenschutz</a>).*</span></label>
           <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">

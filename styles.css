@@ -519,3 +519,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .course-dl { font-weight: 700; color: var(--tape-dark); }
 .course-note { margin-top: clamp(24px, 3vw, 40px); padding: 18px 20px; background: var(--white); border-left: 6px solid var(--tape); font-weight: 600; max-width: 70ch; }
 @media (max-width: 860px) { .course { grid-template-columns: 1fr; } .course-flyer { max-width: 560px; } }
+.hero-more { margin-top: 1.4rem; font-size: .95rem; color: rgba(255,255,255,.8); max-width: 60ch; }
+.hero-more a { color: #fff; text-decoration-color: var(--tape); text-decoration-thickness: 2px; }
+.ct-lead { margin-top: 1rem; max-width: 60ch; color: var(--ink-soft); font-size: 1.1rem; }
+.page-more { margin: 1.2rem 0 0; color: rgba(255,255,255,.8); }
+.page-more a { color: #fff; text-decoration-color: var(--tape); text-decoration-thickness: 2px; }
+.acad-courses { list-style: none; margin: 1.4rem 0 1.6rem; padding: 0; border-top: 1px solid rgba(255,255,255,.2); max-width: 48ch; }
+.acad-courses li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+.acad-courses b { font-weight: 800; }
+.acad-courses span { color: rgba(255,255,255,.72); font-size: .92rem; }
+.acad-all { display: inline-block; margin: 1rem 0 0 1.4rem; color: #fff; font-weight: 700; }
+.flyer-more { margin-top: 1.2rem; line-height: 1.9; }
+.form select { width: 100%; font: inherit; font-stretch: 100%; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 1rem; color: var(--ink); padding: 12px 2px; border: 0; border-bottom: 2px solid rgba(11,20,38,.35); background: transparent; border-radius: 0; }
+.form select:focus { outline: none; border-color: var(--tape); }
+

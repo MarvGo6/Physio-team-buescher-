@@ -49,11 +49,11 @@
     });
   });
 
-  // "Kurs anfragen": Nachricht im Kontaktformular mit dem Kursnamen vorbelegen
+  // "Kurs anfragen": Kurs im Kontaktformular vorauswählen
   document.querySelectorAll('a[data-kurs]').forEach(function (a) {
     a.addEventListener('click', function () {
-      var msg = document.querySelector('#contact-form textarea[name="message"]');
-      if (msg && !msg.value.trim()) msg.value = 'Wir interessieren uns für den Kurs „' + a.dataset.kurs + '“.\n\nTermin, Ort und Teilnehmerzahl: ';
+      var sel = document.querySelector('#contact-form select[name="kurs"]');
+      if (sel) sel.value = a.dataset.kurs;
     });
   });
 
@@ -79,12 +79,13 @@
 
       var d = new FormData(form);
       if (d.get('_honey')) return; // Spam-Schutz: unsichtbares Feld wurde ausgefüllt
-      var subject = 'Kursanfrage „Sportphysiotherapie neu gedacht“' + (d.get('org') ? ' – ' + d.get('org') : '');
+      var subject = 'Kursanfrage' + (d.get('kurs') ? ' „' + d.get('kurs') + '“' : '') + (d.get('org') ? ' – ' + d.get('org') : '');
       var fields = {
         Name: d.get('name'),
         Einrichtung: d.get('org') || '–',
         'E-Mail': d.get('email'),
         Telefon: d.get('phone') || '–',
+        Kurs: d.get('kurs') || '–',
         'Zeitraum und Ort': d.get('when') || '–',
         Nachricht: d.get('message')
       };
