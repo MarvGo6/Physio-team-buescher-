@@ -13,7 +13,7 @@ Die erzeugten Dateien nicht von Hand bearbeiten, sondern src/ ändern und neu ba
 import json
 import re
 from datetime import date
-from html import escape
+from html import escape, unescape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,7 +35,8 @@ PERSON = {
     "@type": "Person",
     "@id": f"{SITE_URL}/referent#person",
     "name": "Thorsten Büscher",
-    "jobTitle": "Physiotherapeut, DOSB-Sportphysiotherapeut",
+    "jobTitle": "Physiotherapeut, Sportphysiotherapeut DOSB, Referent für Fortbildungen",
+    "sameAs": ["https://corpus-as.de/thorsten-buescher/"],
     "email": f"mailto:{EMAIL}",
     "telephone": "+49 163 4439593",
     "image": f"{SITE_URL}/assets/img/thorsten-portrait.jpg",
@@ -53,13 +54,13 @@ PERSON = {
 
 COURSE = {
     "@type": "Course",
-    "@id": f"{SITE_URL}/inhalte#kurs",
+    "@id": f"{SITE_URL}/kurse/sportphysiotherapie-neu-gedacht#kurs",
     "name": "Sportphysiotherapie neu gedacht. Von der Verletzung zur Performance",
     "description": ("Zweitägige Fortbildung für Physiotherapeut:innen, die Sportphysiotherapie von der akuten "
                     "Verletzungsversorgung bis zur Rückkehr in Training, Wettkampf und Performance denkt: "
                     "Assess, Treat, Train, Return, Perform."),
     "inLanguage": "de",
-    "url": f"{SITE_URL}/inhalte",
+    "url": f"{SITE_URL}/kurse/sportphysiotherapie-neu-gedacht",
     "provider": {"@id": f"{SITE_URL}/referent#person"},
     "instructor": {"@id": f"{SITE_URL}/referent#person"},
     "audience": {"@type": "Audience", "audienceType": "Physiotherapeut:innen aus Praxis, Klinik und Sport"},
@@ -73,31 +74,40 @@ COURSE = {
 
 COURSE_TAPING = {
     "@type": "Course",
-    "@id": f"{SITE_URL}/kurse#kinesio-taping",
+    "@id": f"{SITE_URL}/kurse/kinesio-taping#kurs",
     "name": "Kinesio-Taping kompakt: Grundtechniken und Anwendungsmöglichkeiten",
     "description": ("Eintägiger PINO-Kompaktkurs mit 10 Unterrichtseinheiten: kinesiologisches Taping aus funktionell-anatomischer, "
                     "biomechanischer und orthopädischer Sicht, mit hohem Praxisanteil."),
     "inLanguage": "de",
-    "url": f"{SITE_URL}/kurse#kinesio-taping",
+    "url": f"{SITE_URL}/kurse/kinesio-taping",
     "provider": {"@id": f"{SITE_URL}/referent#person"},
     "instructor": {"@id": f"{SITE_URL}/referent#person"},
     "timeRequired": "P1D",
+    "audience": {"@type": "Audience", "audienceType": "Physiotherapeut:innen, Masseur:innen, Ergotherapeut:innen, Heilpraktiker:innen, Ärzt:innen"},
+    "teaches": ["Kinesiologisches Taping", "Muskelanlagen", "Ligamentanlagen", "Korrekturtechniken", "Lymphtaping", "Funktionelle Befunderhebung"],
+    "coursePrerequisites": "Keine Vorkenntnisse erforderlich",
+    "educationalCredentialAwarded": "Teilnahmebescheinigung mit 10 Unterrichtseinheiten",
+    "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "onsite", "courseWorkload": "PT10H"},
 }
 
 COURSE_PINOFIT = {
     "@type": "Course",
-    "@id": f"{SITE_URL}/kurse#pinofit",
+    "@id": f"{SITE_URL}/kurse/bandagen-flossing-bfr#kurs",
     "name": "Bandagen, Flossing und BFR: PINOFIT Kombikurs",
     "description": ("Tageskurs, der PINOFIT Bandagen, Blood Flow Restriction Training und Flossing zu einem Konzept für "
                     "Therapie, Rehabilitation, Training und Prävention verbindet."),
     "inLanguage": "de",
-    "url": f"{SITE_URL}/kurse#pinofit",
+    "url": f"{SITE_URL}/kurse/bandagen-flossing-bfr",
     "provider": {"@id": f"{SITE_URL}/referent#person"},
     "instructor": {"@id": f"{SITE_URL}/referent#person"},
     "timeRequired": "P1D",
+    "audience": {"@type": "Audience", "audienceType": "Physiotherapeut:innen, Sportwissenschaftler:innen, Personal- und Fitnesstrainer:innen, Ärzt:innen"},
+    "teaches": ["Blood Flow Restriction Training", "Okklusionstraining", "Flossing", "Funktionelle Bandagen"],
+    "educationalCredentialAwarded": "Teilnahmebescheinigung",
+    "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "onsite", "courseWorkload": "P1D"},
 }
 
-NAV = [("/kurse", "Kurse", ("kurse", "inhalte")), ("/referent", "Referent", ("referent",)), ("/akademien", "Für Akademien", ("akademien",))]
+NAV = [("/kurse", "Kurse", ("kurse",)), ("/referent", "Referent", ("referent",)), ("/akademien", "Für Akademien", ("akademien",))]
 
 
 def crumbs(*items):
@@ -108,30 +118,17 @@ def crumbs(*items):
 PAGES = {
     "index": dict(
         path="/",
-        title="Fortbildungen Sportphysiotherapie, Kinesio-Taping & BFR | Thorsten Büscher",
-        description=("Drei Fortbildungen mit Thorsten Büscher, DOSB-Sportphysiotherapeut und 5 Jahre Olympiastützpunkt Köln: "
-                     "Sportphysiotherapie neu gedacht (2 Tage), Kinesio-Taping kompakt und Bandagen, Flossing & BFR (je 1 Tag). "
-                     "Kurse in Deutschland und international."),
+        title="Thorsten Büscher: Referent Kinesio-Taping, BFR & Sportphysio",
+        description=("Fortbildungen mit Thorsten Büscher, Sportphysiotherapeut DOSB: Return to Sport (2 Tage), Kinesio-Taping Kurs, BFR & Flossing (je 1 Tag). DE, AT, CH."),
         og_image="/assets/og-image.jpg",
         jsonld=[{"@type": "WebSite", "name": "Sportphysiotherapie neu gedacht", "url": f"{SITE_URL}/", "inLanguage": "de"},
                 COURSE, COURSE_TAPING, COURSE_PINOFIT, PERSON],
         priority="1.0",
     ),
-    "inhalte": dict(
-        path="/inhalte",
-        title="Kursinhalte: Assess, Treat, Train, Return, Perform | Sportphysiotherapie neu gedacht",
-        description=("Die Inhalte der Fortbildung: funktionelle Diagnostik, Dry Needling, Kinesio-Taping, Flossing, "
-                     "Functional Therapy Training mit BFR, kriterienbasierter Return to Sport und Return to Performance."),
-        og_image="/assets/og-image.jpg",
-        jsonld=[COURSE, crumbs(("Startseite", "/"), ("Inhalte", "/inhalte"))],
-        priority="0.9",
-    ),
     "referent": dict(
         path="/referent",
-        title="Thorsten Büscher: DOSB-Sportphysiotherapeut und Referent | Sportphysiotherapie neu gedacht",
-        description=("Thorsten Büscher: Physiotherapeut, Manuelle Therapie, Sportphysiotherapeut DOSB, Instructor für "
-                     "kinesiologisches Taping. Über 15 Jahre in Köln, 5 Jahre Olympiastützpunkt Köln, heute bei corpus as Köln. "
-                     "Referent u. a. an der r.o.m.b.u.s. Akademie."),
+        title="Thorsten Büscher: Physiotherapeut & PINO Head Instructor",
+        description=("Thorsten Büscher, Sportphysiotherapeut DOSB und PINO Head Instructor: Referent für Kinesio-Taping, BFR und Return to Sport. 5 Jahre Olympiastützpunkt Köln."),
         og_image="/assets/img/thorsten-portrait.jpg",
         jsonld=[{"@type": "ProfilePage", "mainEntity": PERSON},
                 crumbs(("Startseite", "/"), ("Referent", "/referent"))],
@@ -139,21 +136,42 @@ PAGES = {
     ),
     "kurse": dict(
         path="/kurse",
-        title="Kurse: Sportphysiotherapie, Kinesio-Taping, Bandagen, Flossing & BFR | Thorsten Büscher",
-        description=("Drei Fortbildungen mit Referent Thorsten Büscher: Sportphysiotherapie neu gedacht (2 Tage), "
-                     "Kinesio-Taping kompakt (1 Tag, 10 UE) und Bandagen, Flossing & BFR (PINOFIT Kombikurs, 1 Tag)."),
+        title="Fortbildungen: Kinesio-Taping, BFR, Flossing & Sportphysio",
+        description=("Drei Fortbildungen für Physiotherapeut:innen: Return to Sport (2 Tage), Kinesio-Taping Kurs (10 UE) und BFR, Flossing & Bandagen. Auch als Inhouse-Schulung."),
         og_image="/assets/img/flyer-kinesio-taping-kompakt-web.jpg",
         jsonld=[{"@type": "ItemList", "itemListElement": [
                     {"@type": "ListItem", "position": i + 1, "item": c} for i, c in enumerate([COURSE, COURSE_TAPING, COURSE_PINOFIT])]},
                 crumbs(("Startseite", "/"), ("Kurse", "/kurse"))],
         priority="0.9",
     ),
+    "kurse/sportphysiotherapie-neu-gedacht": dict(
+        path="/kurse/sportphysiotherapie-neu-gedacht",
+        title="Sportphysiotherapie Fortbildung: Return to Sport (2 Tage)",
+        description=("Return to Sport Fortbildung in 2 Tagen: Diagnostik, Dry Needling, Taping, Flossing, BFR und Return to Performance. Referent: 5 Jahre Olympiastützpunkt Köln."),
+        og_image="/assets/img/flyer-sportphysiotherapie-web.jpg",
+        jsonld=[COURSE, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("Sportphysiotherapie neu gedacht", "/kurse/sportphysiotherapie-neu-gedacht"))],
+        priority="0.9",
+    ),
+    "kurse/kinesio-taping": dict(
+        path="/kurse/kinesio-taping",
+        title="Kinesio-Taping Kurs kompakt: 1 Tag, 10 UE | Thorsten Büscher",
+        description=("Kinesio-Taping Kurs für Physio- und Ergotherapeut:innen: 1 Tag, 10 UE, Tape inklusive, Zertifikat. Muskel-, Ligament- und Lymphanlagen. Auch inhouse."),
+        og_image="/assets/img/flyer-kinesio-taping-kompakt-web.jpg",
+        jsonld=[COURSE_TAPING, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("Kinesio-Taping kompakt", "/kurse/kinesio-taping"))],
+        priority="0.9",
+    ),
+    "kurse/bandagen-flossing-bfr": dict(
+        path="/kurse/bandagen-flossing-bfr",
+        title="BFR, Flossing & Bandagen Fortbildung | PINOFIT 1-Tages-Kurs",
+        description=("BFR Fortbildung für Physios und Trainer: Blood Flow Restriction, Flossing und PINOFIT Bandagen an einem Tag. Dosierung, Sicherheit, Material von PINO."),
+        og_image="/assets/img/flyer-pinofit-kombikurs-web.jpg",
+        jsonld=[COURSE_PINOFIT, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("Bandagen, Flossing & BFR", "/kurse/bandagen-flossing-bfr"))],
+        priority="0.9",
+    ),
     "akademien": dict(
         path="/akademien",
-        title="Drei Fortbildungen für Akademien und Fortbildungsschulen | Thorsten Büscher",
-        description=("Drei fertige Kurskonzepte für Ihr Fortbildungsprogramm: Sportphysiotherapie neu gedacht (2 Tage), "
-                     "Kinesio-Taping kompakt und Bandagen, Flossing & BFR (je 1 Tag). Referent Thorsten Büscher, in Ihren Räumen, "
-                     "in Deutschland und international."),
+        title="Referent buchen: Inhouse-Fortbildung Taping, BFR, Sportphysio",
+        description=("Referent für Ihr Fortbildungsprogramm oder als Inhouse-Schulung: Sportphysiotherapie, Kinesio-Taping, BFR und Flossing. Deutschland, Österreich, Schweiz."),
         og_image="/assets/og-image.jpg",
         jsonld=[COURSE, COURSE_TAPING, COURSE_PINOFIT, crumbs(("Startseite", "/"), ("Für Akademien", "/akademien"))],
         priority="0.9",
@@ -186,7 +204,7 @@ LAYOUT = """<!doctype html>
   <link rel="preload" href="/assets/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 {jsonld}</head>
-<body class="page-{name}">
+<body class="page-{cls}">
   <a class="skip" href="#main">Zum Inhalt springen</a>
 
   <header class="site-header" id="top">
@@ -214,7 +232,7 @@ LAYOUT = """<!doctype html>
     <div class="wrap footer-inner">
       <p class="marker">Therapie trifft Training.</p>
       <p>© <span id="year">{year}</span> Thorsten Büscher</p>
-      <nav aria-label="Weitere Seiten"><a href="/kurse">Kurse</a><a href="/inhalte">Inhalte</a><a href="/referent">Referent</a><a href="/akademien">Für Akademien</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></nav>
+      <nav aria-label="Weitere Seiten"><a href="/kurse">Kurse</a><a href="/kurse/sportphysiotherapie-neu-gedacht">Sportphysiotherapie</a><a href="/kurse/kinesio-taping">Kinesio-Taping</a><a href="/kurse/bandagen-flossing-bfr">Bandagen, Flossing &amp; BFR</a><a href="/referent">Referent</a><a href="/akademien">Für Akademien</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></nav>
     </div>
   </footer>
 
@@ -236,22 +254,30 @@ def build():
         body = include((SRC / "pages" / f"{name}.html").read_text())
         has_contact = 'id="kontakt"' in body
         nav = "\n".join(
-            f'          <li><a href="{href}"{" aria-current=\"page\"" if name in keys else ""}>{label}</a></li>'
+            f'          <li><a href="{href}"{" aria-current=\"page\"" if name.split("/")[0] in keys else ""}>{label}</a></li>'
             for href, label, keys in NAV)
         canonical = SITE_URL + p["path"]
         blocks = ""
-        if p.get("jsonld"):
-            data = {"@context": "https://schema.org", "@graph": p["jsonld"]}
+        graph = list(p.get("jsonld", []))
+        faqs = re.findall(r'<details class="faq-item"><summary>(.*?)</summary><div>(.*?)</div></details>', body, re.S)
+        if faqs:
+            graph.append({"@type": "FAQPage", "mainEntity": [
+                {"@type": "Question", "name": unescape(q), "acceptedAnswer": {"@type": "Answer", "text": unescape(re.sub(r"<[^>]+>", "", a)).strip()}}
+                for q, a in faqs]})
+        if graph:
+            data = {"@context": "https://schema.org", "@graph": graph}
             blocks = ('  <script type="application/ld+json">\n'
                       + json.dumps(data, ensure_ascii=False, indent=2) + "\n  </script>\n")
         html = LAYOUT.format(
-            name=name, title=escape(p["title"]), description=escape(p["description"]),
+            name=name, cls=name.replace("/", "-"), title=escape(p["title"]), description=escape(p["description"]),
             robots='  <meta name="robots" content="noindex, follow">\n' if p.get("noindex") else "",
             canonical=canonical, og_image=SITE_URL + p.get("og_image", "/assets/og-image.jpg"),
             jsonld=blocks, nav=nav, cta="#kontakt" if has_contact else "/#kontakt",
             body=body, year=date.today().year)
         html = html.replace("@@FORM_TARGET@@", FORM_TARGET).replace("@@EMAIL@@", EMAIL)
-        (ROOT / f"{name}.html").write_text(html)
+        out = ROOT / f"{name}.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(html)
         if not p.get("noindex"):
             urls.append((canonical, p.get("priority", "0.5")))
         print(f"  {name}.html")

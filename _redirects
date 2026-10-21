@@ -1,9 +1,16 @@
 # Weiterleitungen für Cloudflare Pages (entspricht vercel.json)
 /akademie /akademien 301
-/inhalt /inhalte 301
-/kursinhalte /inhalte 301
+/inhalte /kurse/sportphysiotherapie-neu-gedacht 301
+/inhalt /kurse/sportphysiotherapie-neu-gedacht 301
+/kursinhalte /kurse/sportphysiotherapie-neu-gedacht 301
 /kurs /kurse 301
 /referenten /referent 301
 /thorsten-buescher /referent 301
 /kontakt /#kontakt 301
 /stimmen /#stimmen 301
+/kinesio-taping /kurse/kinesio-taping 301
+/taping /kurse/kinesio-taping 301
+/pinofit /kurse/bandagen-flossing-bfr 301
+/bfr /kurse/bandagen-flossing-bfr 301
+/flossing /kurse/bandagen-flossing-bfr 301
+/sportphysiotherapie /kurse/sportphysiotherapie-neu-gedacht 301

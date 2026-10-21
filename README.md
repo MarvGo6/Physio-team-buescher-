@@ -3,7 +3,9 @@
 Landingpage zum 2-Tages-Kurs „Sportphysiotherapie neu gedacht – Von der Verletzung zur Performance“
 von Thorsten Büscher, ausgerichtet auf Fortbildungsschulen und Akademien.
 
-- Statisches HTML/CSS/JS, mehrere Seiten: Startseite, `/inhalte`, `/referent`, `/akademien`, Impressum, Datenschutz.
+- Statisches HTML/CSS/JS, mehrere Seiten: Startseite, `/kurse` (Übersicht) mit den Kursseiten `/kurse/sportphysiotherapie-neu-gedacht`,
+  `/kurse/kinesio-taping` und `/kurse/bandagen-flossing-bfr`, `/referent`, `/akademien`, Impressum, Datenschutz.
+- Häufige Fragen (`<details class="faq-item">`) auf einer Seite werden beim Bauen automatisch als FAQ-Daten für Google ausgegeben.
 - Seiten werden aus `src/` zusammengesetzt: `python3 tools/build.py` (erzeugt die `*.html` im Hauptordner,
   `sitemap.xml` und `robots.txt`). Gemeinsame Bausteine wie „Stimmen“ und „Kontakt“ liegen in `src/partials/`
   und erscheinen dadurch auf allen Seiten. Erzeugte `*.html` nicht direkt bearbeiten.

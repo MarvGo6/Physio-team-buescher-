@@ -31,13 +31,18 @@
       "permanent": true
     },
     {
+      "source": "/inhalte",
+      "destination": "/kurse/sportphysiotherapie-neu-gedacht",
+      "permanent": true
+    },
+    {
       "source": "/inhalt",
-      "destination": "/inhalte",
+      "destination": "/kurse/sportphysiotherapie-neu-gedacht",
       "permanent": true
     },
     {
       "source": "/kursinhalte",
-      "destination": "/inhalte",
+      "destination": "/kurse/sportphysiotherapie-neu-gedacht",
       "permanent": true
     },
     {
@@ -63,6 +68,36 @@
     {
       "source": "/stimmen",
       "destination": "/#stimmen",
+      "permanent": true
+    },
+    {
+      "source": "/kinesio-taping",
+      "destination": "/kurse/kinesio-taping",
+      "permanent": true
+    },
+    {
+      "source": "/taping",
+      "destination": "/kurse/kinesio-taping",
+      "permanent": true
+    },
+    {
+      "source": "/pinofit",
+      "destination": "/kurse/bandagen-flossing-bfr",
+      "permanent": true
+    },
+    {
+      "source": "/bfr",
+      "destination": "/kurse/bandagen-flossing-bfr",
+      "permanent": true
+    },
+    {
+      "source": "/flossing",
+      "destination": "/kurse/bandagen-flossing-bfr",
+      "permanent": true
+    },
+    {
+      "source": "/sportphysiotherapie",
+      "destination": "/kurse/sportphysiotherapie-neu-gedacht",
       "permanent": true
     }
   ]

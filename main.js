@@ -1,6 +1,6 @@
 (function () {
   // Alte Sprungmarken der früheren Einzelseite auf die neuen Unterseiten umleiten
-  var moved = { '#referent': '/referent', '#inhalte': '/inhalte', '#akademien': '/akademien' };
+  var moved = { '#referent': '/referent', '#inhalte': '/kurse/sportphysiotherapie-neu-gedacht', '#akademien': '/akademien' };
   if ((location.pathname === '/' || location.pathname === '/index.html') && moved[location.hash]) {
     location.replace(moved[location.hash]);
     return;
