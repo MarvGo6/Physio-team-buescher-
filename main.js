@@ -23,6 +23,27 @@
     });
   }
 
+  // Untermenü "Kurse" auf- und zuklappen
+  var subs = document.querySelectorAll('.has-sub');
+  var closeSubs = function (except) {
+    subs.forEach(function (li) {
+      if (li === except) return;
+      li.classList.remove('open');
+      li.querySelector('.sub-toggle').setAttribute('aria-expanded', 'false');
+    });
+  };
+  subs.forEach(function (li) {
+    var btn = li.querySelector('.sub-toggle');
+    btn.addEventListener('click', function () {
+      var open = !li.classList.contains('open');
+      closeSubs(li);
+      li.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.has-sub')) closeSubs(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSubs(); });
+
   // Jahr im Footer
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();

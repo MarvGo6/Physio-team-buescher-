@@ -90,6 +90,25 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .nav-list a:not(.btn):hover { color: #fff; }
 .nav-list .btn { padding: .6em 1.1em; font-size: .9rem; }
 .nav-toggle { display: none; }
+/* Untermenü Kurse */
+.has-sub { position: relative; display: flex; align-items: center; gap: 2px; }
+.sub-toggle { width: 24px; height: 24px; padding: 0; background: none; border: 0; cursor: pointer; color: rgba(255,255,255,.82); }
+.sub-toggle::before { content: ""; display: block; width: 7px; height: 7px; margin: 0 auto; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .15s; }
+.has-sub.open .sub-toggle::before { transform: translateY(2px) rotate(-135deg); }
+.sub { display: none; position: absolute; top: calc(100% + 18px); left: -20px; min-width: 310px; margin: 0; padding: 8px 0; list-style: none; background: var(--ink); border: 1px solid rgba(255,255,255,.12); border-top: 3px solid var(--tape); box-shadow: 0 18px 40px -12px rgba(0,0,0,.6); }
+.sub::before { content: ""; position: absolute; left: 0; right: 0; top: -22px; height: 20px; }
+.has-sub.open .sub { display: block; }
+.nav-list .sub a { display: block; padding: 10px 20px; }
+.sub a b { display: block; color: #fff; font-weight: 750; font-stretch: 90%; }
+.sub a small { display: block; margin-top: 2px; color: var(--tape-light); font-weight: 600; font-stretch: 80%; text-transform: uppercase; letter-spacing: .06em; font-size: .76rem; }
+.sub a:hover, .sub a[aria-current="page"] { background: rgba(255,255,255,.06); }
+.nav-list .sub-all a { margin-top: 4px; border-top: 1px solid rgba(255,255,255,.1); color: var(--tape-light); font-size: .9rem; }
+@media (min-width: 901px) {
+  .has-sub:focus-within .sub { display: block; }
+}
+@media (hover: hover) and (min-width: 901px) {
+  .has-sub:hover .sub { display: block; }
+}
 @media (max-width: 900px) {
   .brand-sub { display: none; }
   .nav-toggle { display: flex; flex-direction: column; justify-content: center; gap: 7px; width: 44px; height: 44px; padding: 10px; background: none; border: 0; cursor: pointer; }
@@ -100,6 +119,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .nav-list.open { display: flex; }
   .nav-list a:not(.btn) { display: block; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 1.15rem; }
   .nav-list .btn { margin-top: 16px; width: 100%; font-size: 1rem; }
+  .has-sub { display: block; }
+  .sub-toggle { position: absolute; right: -10px; top: 4px; width: 48px; height: 48px; }
+  .sub { position: static; min-width: 0; padding: 0 0 6px 14px; border: 0; box-shadow: none; }
+  .sub::before { display: none; }
+  .nav-list .sub a { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 1rem; }
+  .nav-list .sub-all a { margin-top: 0; border-top: 0; }
 }
 
 /* ---------- Hero ---------- */

@@ -172,7 +172,14 @@
           <span class="sr-only">Menü</span><span class="bar"></span><span class="bar"></span>
         </button>
         <ul id="nav-list" class="nav-list">
-          <li><a href="/kurse" aria-current="page">Kurse</a></li>
+          <li class="has-sub"><a href="/kurse" aria-current="page">Kurse</a><button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-kurse"><span class="sr-only">Kurse anzeigen</span></button>
+            <ul class="sub" id="sub-kurse">
+              <li><a href="/kurse/sportphysiotherapie-neu-gedacht"><b>Sportphysiotherapie neu gedacht</b><small>2 Tage · Return to Sport</small></a></li>
+              <li><a href="/kurse/kinesio-taping"><b>Kinesio-Taping kompakt</b><small>1 Tag · 10 UE</small></a></li>
+              <li><a href="/kurse/bandagen-flossing-bfr" aria-current="page"><b>Bandagen, Flossing &amp; BFR</b><small>1 Tag · PINOFIT Kombikurs</small></a></li>
+              <li class="sub-all"><a href="/kurse">Alle Kurse im Vergleich</a></li>
+            </ul>
+          </li>
           <li><a href="/referent">Referent</a></li>
           <li><a href="/akademien">Für Akademien</a></li>
           <li><a href="#kontakt" class="btn btn-tape">Termin abstimmen</a></li>

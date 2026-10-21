@@ -110,6 +110,27 @@ COURSE_PINOFIT = {
 NAV = [("/kurse", "Kurse", ("kurse",)), ("/referent", "Referent", ("referent",)), ("/akademien", "Für Akademien", ("akademien",))]
 
 
+# Untermenü unter "Kurse"
+KURS_MENU = [
+    ("/kurse/sportphysiotherapie-neu-gedacht", "Sportphysiotherapie neu gedacht", "2 Tage · Return to Sport"),
+    ("/kurse/kinesio-taping", "Kinesio-Taping kompakt", "1 Tag · 10 UE"),
+    ("/kurse/bandagen-flossing-bfr", "Bandagen, Flossing &amp; BFR", "1 Tag · PINOFIT Kombikurs"),
+]
+
+
+def nav_item(href, label, keys, name):
+    current = ' aria-current="page"' if name.split("/")[0] in keys else ""
+    if href != "/kurse":
+        return f'          <li><a href="{href}"{current}>{label}</a></li>'
+    subs = "\n".join(
+        f'              <li><a href="{h}"{" aria-current=\"page\"" if "/" + name == h else ""}><b>{n}</b><small>{m}</small></a></li>'
+        for h, n, m in KURS_MENU)
+    return (f'          <li class="has-sub"><a href="{href}"{current}>{label}</a>'
+            f'<button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-kurse"><span class="sr-only">Kurse anzeigen</span></button>\n'
+            f'            <ul class="sub" id="sub-kurse">\n{subs}\n'
+            f'              <li class="sub-all"><a href="/kurse">Alle Kurse im Vergleich</a></li>\n            </ul>\n          </li>')
+
+
 def crumbs(*items):
     return {"@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "name": n, "item": f"{SITE_URL}{p}"} for i, (n, p) in enumerate(items)]}
@@ -253,9 +274,7 @@ def build():
     for name, p in PAGES.items():
         body = include((SRC / "pages" / f"{name}.html").read_text())
         has_contact = 'id="kontakt"' in body
-        nav = "\n".join(
-            f'          <li><a href="{href}"{" aria-current=\"page\"" if name.split("/")[0] in keys else ""}>{label}</a></li>'
-            for href, label, keys in NAV)
+        nav = "\n".join(nav_item(href, label, keys, name) for href, label, keys in NAV)
         canonical = SITE_URL + p["path"]
         blocks = ""
         graph = list(p.get("jsonld", []))
