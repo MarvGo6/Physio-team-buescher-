@@ -46,7 +46,7 @@ PERSON = {
     "address": {"@type": "PostalAddress", "streetAddress": "Georgshof 1", "postalCode": "51503", "addressLocality": "Rösrath", "addressCountry": "DE"},
     "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": n} for n in [
         "Physiotherapeut", "Manuelle Therapie", "Sportphysiotherapeut DOSB", "Instructor Kinesiologisches Taping",
-        "Ergonomie-Instructor", "Golf-Physio-Trainer", "PINO Headinstructor"]],
+        "Ergonomie-Instructor", "Golf-Physio-Trainer", "PINO Head Instructor"]],
     "knowsAbout": ["Sportphysiotherapie", "Manuelle Therapie", "Return to Sport", "Kinesiologisches Taping",
                    "Dry Needling", "Flossing", "Blood Flow Restriction Training", "Funktionelles Training",
                    "Ergonomie", "Golf-Physiotherapie"],
@@ -75,7 +75,7 @@ COURSE = {
 COURSE_TAPING = {
     "@type": "Course",
     "@id": f"{SITE_URL}/kurse/kinesio-taping#kurs",
-    "name": "Kinesio-Taping kompakt: Grundtechniken und Anwendungsmöglichkeiten",
+    "name": "Kinesio Taping Kurs kompakt (PINO): Grundtechniken und Anwendungsmöglichkeiten",
     "description": ("Eintägiger PINO-Kompaktkurs mit 10 Unterrichtseinheiten: kinesiologisches Taping aus funktionell-anatomischer, "
                     "biomechanischer und orthopädischer Sicht, mit hohem Praxisanteil."),
     "inLanguage": "de",
@@ -93,7 +93,7 @@ COURSE_TAPING = {
 COURSE_PINOFIT = {
     "@type": "Course",
     "@id": f"{SITE_URL}/kurse/bandagen-flossing-bfr#kurs",
-    "name": "Bandagen, Flossing und BFR: PINOFIT Kombikurs",
+    "name": "PINOFIT Kombikurs: Bandagen, Flossing und BFR-Training",
     "description": ("Tageskurs, der PINOFIT Bandagen, Blood Flow Restriction Training und Flossing zu einem Konzept für "
                     "Therapie, Rehabilitation, Training und Prävention verbindet."),
     "inLanguage": "de",
@@ -113,8 +113,8 @@ NAV = [("/kurse", "Kurse", ("kurse",)), ("/referent", "Referent", ("referent",))
 # Untermenü unter "Kurse"
 KURS_MENU = [
     ("/kurse/sportphysiotherapie-neu-gedacht", "Sportphysiotherapie neu gedacht", "2 Tage · Return to Sport"),
-    ("/kurse/kinesio-taping", "Kinesio-Taping kompakt", "1 Tag · 10 UE"),
-    ("/kurse/bandagen-flossing-bfr", "Bandagen, Flossing &amp; BFR", "1 Tag · PINOFIT Kombikurs"),
+    ("/kurse/kinesio-taping", "Kinesio Taping Kurs", "PINO · 1 Tag · 10 UE"),
+    ("/kurse/bandagen-flossing-bfr", "PINOFIT Kombikurs", "BFR · Flossing · Bandagen"),
 ]
 
 
@@ -139,8 +139,8 @@ def crumbs(*items):
 PAGES = {
     "index": dict(
         path="/",
-        title="Thorsten Büscher: Referent Kinesio-Taping, BFR & Sportphysio",
-        description=("Fortbildungen mit Thorsten Büscher, Sportphysiotherapeut DOSB: Return to Sport (2 Tage), Kinesio-Taping Kurs, BFR & Flossing (je 1 Tag). DE, AT, CH."),
+        title="Physiotherapie Fortbildungen: Kinesio Taping, BFR, Sportphysio",
+        description=("Fortbildungen mit PINO Head Instructor Thorsten Büscher: Sportphysiotherapie Fortbildung, Kinesio Taping Kurs und PINOFIT Kombikurs mit BFR. DE, AT, CH."),
         og_image="/assets/og-image.jpg",
         jsonld=[{"@type": "WebSite", "name": "Sportphysiotherapie neu gedacht", "url": f"{SITE_URL}/", "inLanguage": "de"},
                 COURSE, COURSE_TAPING, COURSE_PINOFIT, PERSON],
@@ -148,8 +148,8 @@ PAGES = {
     ),
     "referent": dict(
         path="/referent",
-        title="Thorsten Büscher: Physiotherapeut & PINO Head Instructor",
-        description=("Thorsten Büscher, Sportphysiotherapeut DOSB und PINO Head Instructor: Referent für Kinesio-Taping, BFR und Return to Sport. 5 Jahre Olympiastützpunkt Köln."),
+        title="Thorsten Büscher: PINO Head Instructor & Physiotherapeut",
+        description=("Thorsten Büscher, PINO Head Instructor und Sportphysiotherapeut DOSB: Referent für Kinesio Taping, BFR und Sportphysiotherapie. 5 Jahre Olympiastützpunkt Köln."),
         og_image="/assets/img/thorsten-portrait.jpg",
         jsonld=[{"@type": "ProfilePage", "mainEntity": PERSON},
                 crumbs(("Startseite", "/"), ("Referent", "/referent"))],
@@ -157,8 +157,8 @@ PAGES = {
     ),
     "kurse": dict(
         path="/kurse",
-        title="Fortbildungen: Kinesio-Taping, BFR, Flossing & Sportphysio",
-        description=("Drei Fortbildungen für Physiotherapeut:innen: Return to Sport (2 Tage), Kinesio-Taping Kurs (10 UE) und BFR, Flossing & Bandagen. Auch als Inhouse-Schulung."),
+        title="Kurse: Kinesio Taping, PINOFIT Kombikurs, Sportphysiotherapie",
+        description=("Drei Fortbildungen für Physiotherapeut:innen: Sportphysiotherapie mit Return to Sport (2 Tage), Kinesio Taping Kurs (10 UE) und PINOFIT Kombikurs mit BFR."),
         og_image="/assets/img/flyer-kinesio-taping-kompakt-web.jpg",
         jsonld=[{"@type": "ItemList", "itemListElement": [
                     {"@type": "ListItem", "position": i + 1, "item": c} for i, c in enumerate([COURSE, COURSE_TAPING, COURSE_PINOFIT])]},
@@ -167,32 +167,32 @@ PAGES = {
     ),
     "kurse/sportphysiotherapie-neu-gedacht": dict(
         path="/kurse/sportphysiotherapie-neu-gedacht",
-        title="Sportphysiotherapie Fortbildung: Return to Sport (2 Tage)",
-        description=("Return to Sport Fortbildung in 2 Tagen: Diagnostik, Dry Needling, Taping, Flossing, BFR und Return to Performance. Referent: 5 Jahre Olympiastützpunkt Köln."),
+        title="Sportphysiotherapie Fortbildung & Return to Sport Kurs (2 Tage)",
+        description=("Sportphysiotherapie Fortbildung in 2 Tagen: Diagnostik, Dry Needling, Taping, Flossing, BFR und Return to Sport. Referent: 5 Jahre Olympiastützpunkt Köln."),
         og_image="/assets/img/flyer-sportphysiotherapie-web.jpg",
-        jsonld=[COURSE, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("Sportphysiotherapie neu gedacht", "/kurse/sportphysiotherapie-neu-gedacht"))],
+        jsonld=[COURSE, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("Sportphysiotherapie Fortbildung", "/kurse/sportphysiotherapie-neu-gedacht"))],
         priority="0.9",
     ),
     "kurse/kinesio-taping": dict(
         path="/kurse/kinesio-taping",
-        title="Kinesio-Taping Kurs kompakt: 1 Tag, 10 UE | Thorsten Büscher",
-        description=("Kinesio-Taping Kurs für Physio- und Ergotherapeut:innen: 1 Tag, 10 UE, Tape inklusive, Zertifikat. Muskel-, Ligament- und Lymphanlagen. Auch inhouse."),
+        title="Kinesio Taping Kurs | PINO Tape-Fortbildung, 1 Tag, 10 UE",
+        description=("Kinesio Taping Kurs mit PINO Head Instructor: 1 Tag, 10 UE, Tape inklusive, Zertifikat. Muskel-, Ligament- und Lymphanlagen. Für Physios, auch inhouse."),
         og_image="/assets/img/flyer-kinesio-taping-kompakt-web.jpg",
-        jsonld=[COURSE_TAPING, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("Kinesio-Taping kompakt", "/kurse/kinesio-taping"))],
+        jsonld=[COURSE_TAPING, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("Kinesio Taping Kurs", "/kurse/kinesio-taping"))],
         priority="0.9",
     ),
     "kurse/bandagen-flossing-bfr": dict(
         path="/kurse/bandagen-flossing-bfr",
-        title="BFR, Flossing & Bandagen Fortbildung | PINOFIT 1-Tages-Kurs",
-        description=("BFR Fortbildung für Physios und Trainer: Blood Flow Restriction, Flossing und PINOFIT Bandagen an einem Tag. Dosierung, Sicherheit, Material von PINO."),
+        title="PINOFIT Kombikurs: BFR, Flossing & Bandagen | PINO Kurs",
+        description=("PINOFIT Kombikurs: BFR Fortbildung mit Flossing und PINOFIT Bandagen an einem Tag. Für Physios, Sportwissenschaftler und Trainer. Material von PINO."),
         og_image="/assets/img/flyer-pinofit-kombikurs-web.jpg",
-        jsonld=[COURSE_PINOFIT, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("Bandagen, Flossing & BFR", "/kurse/bandagen-flossing-bfr"))],
+        jsonld=[COURSE_PINOFIT, crumbs(("Startseite", "/"), ("Kurse", "/kurse"), ("PINOFIT Kombikurs", "/kurse/bandagen-flossing-bfr"))],
         priority="0.9",
     ),
     "akademien": dict(
         path="/akademien",
-        title="Referent buchen: Inhouse-Fortbildung Taping, BFR, Sportphysio",
-        description=("Referent für Ihr Fortbildungsprogramm oder als Inhouse-Schulung: Sportphysiotherapie, Kinesio-Taping, BFR und Flossing. Deutschland, Österreich, Schweiz."),
+        title="Referent buchen: PINO Kurse, Taping, BFR & Sportphysio inhouse",
+        description=("Referent für Ihr Programm oder inhouse: Kinesio Taping Kurs, PINOFIT Kombikurs und Sportphysiotherapie Fortbildung. Deutschland, Österreich, Schweiz."),
         og_image="/assets/og-image.jpg",
         jsonld=[COURSE, COURSE_TAPING, COURSE_PINOFIT, crumbs(("Startseite", "/"), ("Für Akademien", "/akademien"))],
         priority="0.9",
@@ -253,7 +253,7 @@ LAYOUT = """<!doctype html>
     <div class="wrap footer-inner">
       <p class="marker">Therapie trifft Training.</p>
       <p>© <span id="year">{year}</span> Thorsten Büscher</p>
-      <nav aria-label="Weitere Seiten"><a href="/kurse">Kurse</a><a href="/kurse/sportphysiotherapie-neu-gedacht">Sportphysiotherapie</a><a href="/kurse/kinesio-taping">Kinesio-Taping</a><a href="/kurse/bandagen-flossing-bfr">Bandagen, Flossing &amp; BFR</a><a href="/referent">Referent</a><a href="/akademien">Für Akademien</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></nav>
+      <nav aria-label="Weitere Seiten"><a href="/kurse">Kurse</a><a href="/kurse/sportphysiotherapie-neu-gedacht">Sportphysiotherapie Fortbildung</a><a href="/kurse/kinesio-taping">Kinesio Taping Kurs</a><a href="/kurse/bandagen-flossing-bfr">PINOFIT Kombikurs</a><a href="/referent">Referent</a><a href="/akademien">Für Akademien</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></nav>
     </div>
   </footer>
 
