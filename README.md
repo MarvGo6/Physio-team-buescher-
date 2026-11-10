@@ -33,6 +33,10 @@ von Thorsten Büscher, ausgerichtet auf Fortbildungsschulen und Akademien.
 - Vercel baut bei jedem Deployment selbst: Build-Befehl `python3 tools/build.py`, Ausgabe `.`.
 - Kontakt-E-Mail: in `tools/build.py` `MAIL_LIVE = True` setzen, sobald die Weiterleitung getestet ist.
 
+## Bing / IndexNow
+- Schlüsseldatei `7dd8bfcf42d9944050ae62cb65353e32.txt` im Projektordner nicht löschen.
+- Bei jedem Production-Build auf Vercel meldet `tools/build.py` alle Seiten der Sitemap an IndexNow (Bing, Yandex u. a.).
+
 ## Lokal ansehen
 ```
 python3 -m http.server 8000

@@ -11,7 +11,9 @@ Ausgabe: <name>.html im Projektordner sowie sitemap.xml und robots.txt.
 Die erzeugten Dateien nicht von Hand bearbeiten, sondern src/ ändern und neu bauen.
 """
 import json
+import os
 import re
+import urllib.request
 from datetime import date
 from html import escape, unescape
 from pathlib import Path
@@ -26,6 +28,9 @@ SRC = ROOT / "src"
 #            im Gmail-Postfach angekommen ist. Dann neu bauen.
 # ---------------------------------------------------------------------------
 SITE_URL = "https://physio-buescher.de"
+# IndexNow (Bing, Yandex u. a.): Schlüsseldatei liegt als /<Schlüssel>.txt im Projektordner.
+# Bei jedem Production-Build auf Vercel werden alle Seiten an IndexNow gemeldet.
+INDEXNOW_KEY = "7dd8bfcf42d9944050ae62cb65353e32"
 MAIL_LIVE = True
 EMAIL = "kontakt@physio-buescher.de" if MAIL_LIVE else "physioteambuescher@gmail.com"
 # Empfänger des Kontaktformulars (FormSubmit ist für diese Adresse freigeschaltet)
@@ -309,6 +314,22 @@ def build():
     (ROOT / "sitemap.xml").write_text("\n".join(sitemap) + "\n")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
     print("  sitemap.xml, robots.txt")
+    if os.environ.get("VERCEL_ENV") == "production":
+        ping_indexnow([u for u, _ in urls])
+
+
+def ping_indexnow(url_list):
+    """Meldet die Seiten an IndexNow. Fehler brechen den Build nicht ab."""
+    host = SITE_URL.split("//", 1)[1]
+    body = json.dumps({"host": host, "key": INDEXNOW_KEY, "keyLocation": f"{SITE_URL}/{INDEXNOW_KEY}.txt",
+                       "urlList": url_list}).encode()
+    req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                 headers={"Content-Type": "application/json; charset=utf-8"})
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            print(f"  IndexNow: {r.status} für {len(url_list)} Seiten")
+    except Exception as e:  # noqa: BLE001
+        print(f"  IndexNow nicht erreicht: {e}")
 
 
 if __name__ == "__main__":
